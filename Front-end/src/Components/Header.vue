@@ -29,13 +29,15 @@
         </div>
 
         <!-- Sign In -->
-        <!-- <router-link class="pl-5" to="/SignIn">Sign In</router-link> -->
+        <router-link class="pr-3" to="/Register">Register</router-link>
+        <router-link class="pr-3" to="/Login">Login</router-link>
+        
         <!-- 原版 -->
-        <div class="user">
+        <!-- <div class="user">
           <h5 style="cursor: pointer" data-toggle="modal" data-target="#userModal">Sign In</h5>
-        </div>
+        </div> -->
 
-        <div class="bag" @click="openCart">
+        <div class="bag pr-3" @click="openCart">
             <img class="pb-1" src="@/assets/cart.svg">
             <span class="mb-3" v-if="this.bagItemscount > 0">{{ bagItemscount }}</span>
         </div>
