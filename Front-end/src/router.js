@@ -8,7 +8,7 @@ const Info = () => import('@/views/Info.vue');
 const Login = () => import('@/views/Login.vue');
 const Register = () => import('@/views/Register.vue');
 
-// const SellerProfile = () => import('@/views/Seller/SellerProfile.vue')
+const SellerProfile = () => import('@/views/Seller/SellerProfile.vue')
 
 
 Vue.use(Router)
@@ -43,6 +43,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/sellerProfile',
+      name: 'SellerProfile',
+      component: SellerProfile
     },
   ],
   mode: 'history'
