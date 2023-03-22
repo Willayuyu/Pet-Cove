@@ -45,7 +45,7 @@
 
 
             <!-- <button class="loginBtn" type="">Signup</button> -->
-            <router-link class="loginBtn" to="/sellerProfile" tag="button">
+            <router-link class="loginBtn" to="/sellerHomePage" tag="button">
                 Register
           </router-link>
           </form>

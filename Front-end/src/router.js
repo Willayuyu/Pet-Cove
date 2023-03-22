@@ -8,7 +8,7 @@ const Info = () => import('@/views/Info.vue');
 const Login = () => import('@/views/Login.vue');
 const Register = () => import('@/views/Register.vue');
 
-const SellerProfile = () => import('@/views/Seller/SellerProfile.vue')
+const SellerHomePage = () => import('@/views/Seller/SellerHomePage.vue')
 
 
 Vue.use(Router)
@@ -45,9 +45,9 @@ export default new Router({
       component: Register
     },
     {
-      path: '/sellerProfile',
-      name: 'SellerProfile',
-      component: SellerProfile
+      path: '/sellerHomePage',
+      name: 'SellerHomePage',
+      component: SellerHomePage
     },
   ],
   mode: 'history'
