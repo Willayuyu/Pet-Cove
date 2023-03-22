@@ -18,6 +18,7 @@
         <router-link class="pl-5" to="/">Home</router-link>
         <router-link class="pl-5" to="/products">Products</router-link>
         <router-link class="pl-5" to="/contact">Contact us</router-link>
+        <router-link class="pl-5" to="/testPage">Test</router-link>
         <!-- <router-link class="pl-5" to="/contact">Contact you</router-link> -->
       </span>
 

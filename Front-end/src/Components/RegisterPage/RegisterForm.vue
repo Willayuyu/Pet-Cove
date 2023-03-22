@@ -7,12 +7,36 @@
       <div class="loginCard">
         <div class="loginForm">
           <form action="" class="login">
-            <label class="inputLabel" for="name">Name</label>
+            <!-- <b-form-group class="inputLabel" id="uname-group" label="Username:" label-for="uname"></b-form-group>
+              <b-form-input 
+                id="uname" 
+                class="name"
+                type="text" 
+                placeholder="Enter your username"
+                required>
+            </b-form-input> -->
+            
+            <label class="inputLabel" for="uname">Username</label>
             <input
               class="name"
               type="text"
-              name="name"
-              placeholder="Enter your name"
+              name="uname"
+              placeholder="Enter your username"
+            />
+
+            <label class="inputLabel" for="fname">First name</label>
+            <input
+              class="name"
+              type="text"
+              name="fname"
+              placeholder="Enter your first name"
+            />
+            <label class="inputLabel" for="lname">Last name</label>
+            <input
+              class="name"
+              type="text"
+              name="lname"
+              placeholder="Enter your last name"
             />
             <label class="inputLabel" for="email">Email</label>
             <input
@@ -20,6 +44,14 @@
               type="text"
               name="email"
               placeholder="Enter your email"
+            />
+            <label class="inputLabel" for="tel">Telephone number</label>
+            <input
+              class="user"
+              type="text"
+              name="tel"
+              placeholder="Enter your telephone number"
+              required
             />
             <label class="inputLabel" for="password">Password</label>
             <input
@@ -135,7 +167,7 @@
   }
   .loginBtn {
     border: solid 1px var(--blue);
-    color: white;
+    color: black;
     text-decoration: none;
     background-color: var(--blue);
     padding: 5px 15px;
@@ -144,7 +176,7 @@
     margin: 0.5rem 0;
   }
   .loginBtn:hover {
-    background-color: var(--carbonLight);
+    background-color: rgb(182, 221, 248);
     border: solid 1px var(--carbonLight);
   }
   .join {

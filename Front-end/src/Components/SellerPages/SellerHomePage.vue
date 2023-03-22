@@ -1,7 +1,7 @@
 <template>
     <div class="container my-5" >
         <div>
-            <b-card no-body style="height: 500px;">
+            <b-card no-body style="min-height: 1000px;">
                 <div>
                     <b-tabs class="ml-2 my-4" content-class="mx-5 my-3" justified vertical lazy>
                         <AccountProfile/>

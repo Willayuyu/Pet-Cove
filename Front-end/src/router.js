@@ -10,6 +10,7 @@ const Register = () => import('@/views/Register.vue');
 
 const SellerHomePage = () => import('@/views/Seller/SellerHomePage.vue')
 
+const TestPage = () => import('@/views/Test/TestPage.vue')
 
 Vue.use(Router)
 
@@ -49,6 +50,12 @@ export default new Router({
       name: 'SellerHomePage',
       component: SellerHomePage
     },
+    {
+      path: '/testPage',
+      name: 'TestPage',
+      component: TestPage
+    },
+    
   ],
   mode: 'history'
 })

@@ -1,7 +1,9 @@
 <template>
-  <card>
+  <div>
+    
+  <!-- <card> -->
     <h4 slot="header" class="card-title">Edit Profile</h4>
-    <form>
+    <b-form>
       <div class="row">
         <div class="col-md-5">
           <base-input type="text"
@@ -95,11 +97,13 @@
         </button>
       </div>
       <div class="clearfix"></div>
-    </form>
-  </card>
+    </b-form>
+  <!-- </card> -->
+
+</div>
 </template>
 <script>
-  import Card from '../Cards/Card.vue'
+  import Card from './Card.vue'
 
   export default {
     components: {

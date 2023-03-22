@@ -124,7 +124,7 @@
   }
   .loginBtn {
     border: solid 1px var(--blue);
-    color: white;
+    color: black;
     text-decoration: none;
     background-color: var(--blue);
     padding: 5px 15px;
@@ -133,7 +133,7 @@
     margin: 0.5rem 0;
   }
   .loginBtn:hover {
-    background-color: var(--carbonLight);
+    background-color: rgb(182, 221, 248);;
     border: solid 1px var(--carbonLight);
   }
   .noPassword {
