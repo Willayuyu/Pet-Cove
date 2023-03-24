@@ -1,7 +1,9 @@
 
-SellerPage
-|-- AccountProfile
-|-- -- ProfileForm
+Seller Page
+|-- Account Profile
+|-- -- Profile Form
 |-- Orders
-|-- -- OrderList
+|-- -- Order List
 |-- Inventory
+|-- -- My Products
+|-- -- Add Products
