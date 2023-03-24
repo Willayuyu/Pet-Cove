@@ -9,7 +9,7 @@ const Login = () => import('@/views/Login.vue');
 const Register = () => import('@/views/Register.vue');
 
 const SellerHomePage = () => import('@/views/Seller/SellerHomePage.vue')
-const BuyerHomePage = () => import('./Components/BuyerPage/BuyerHomePage.vue')
+const BuyerHomePage =() => import('@/view/Buyer/BuyerHomePage.vue')
 const TestPage = () => import('@/views/Test/TestPage.vue')
 
 Vue.use(Router)
@@ -57,7 +57,7 @@ export default new Router({
     },
     {
       path: '/buyerHomePage',
-      name: 'BuyHomePage',
+      name: 'buyerHomePage',
       component: BuyerHomePage
     },
     
