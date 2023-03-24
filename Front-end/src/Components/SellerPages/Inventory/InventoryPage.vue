@@ -1,12 +1,13 @@
 <template>
 
     <b-tab title-item-class="mt-1" title="Inventory Management">
-        <p>I'm the tab with the very, very long title</p>
+        <b-card header="Inventory Management">
         <b-tabs content-class="mt-3" >
             <MyProducts />
             <AddProducts />
             
         </b-tabs>
+    </b-card>
     </b-tab>
 </template>
 
