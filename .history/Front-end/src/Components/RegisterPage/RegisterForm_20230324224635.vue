@@ -104,24 +104,7 @@
 </template>
   
   <script>
-export default {
-  data() {
-    return {
-      isSeller: false,
-      buyerHomePage: "/buyerHomePage",
-      sellerHomePage: "/sellerHomePage"
-    }
-  },
-  computed: {
-    registrationPage() {
-      if (this.isSeller) {
-        return this.sellerHomePage;
-      } else {
-        return this.buyerHomePage;
-      }
-    }
-  }
-};
+export default {};
 
 </script>
   
