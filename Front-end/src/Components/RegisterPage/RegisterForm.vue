@@ -114,6 +114,8 @@ export default {
   },
   computed: {
     registrationPage() {
+      /* eslint-disable */
+      this.$store.state.isLoggedIn = true;
       if (this.isSeller) {
         return this.sellerHomePage;
       } else {

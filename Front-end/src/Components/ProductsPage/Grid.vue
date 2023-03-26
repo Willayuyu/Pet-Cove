@@ -14,9 +14,8 @@
             <span style="color: #f2be00">{{ sortButton }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" @click="sortDate">Date</a>
-            <a class="dropdown-item" @click="sortPrice">Price</a>
-            <a class="dropdown-item" @click="sortTrend">Trending</a>
+            <a class="dropdown-item" @click="sortPriceAsc">Price Ascending</a>
+            <a class="dropdown-item" @click="sortPriceDesc">Price Descending</a>
           </div>
         </div>
         <div class="ml-3">
@@ -189,18 +188,22 @@ export default {
       var y = value[1];
       this.cards = this.it.filter((e) => x < e.price && e.price < y);
     },
-    sortDate() {
+    /*sortDate() {
       this.cards.sort((a, b) => a.title.length * 2 - b.title.length * 4);
       return (this.sortButton = "DATE");
-    },
-    sortPrice() {
+    },*/
+    sortPriceAsc() {
       this.cards.sort((a, b) => a.price - b.price);
-      return (this.sortButton = "PRICE");
+      return (this.sortButton = "Price Ascending");
     },
-    sortTrend() {
+    sortPriceDesc() {
+      this.cards.sort((a, b) => b.price - a.price);
+      return (this.sortButton = "Price Descending");
+    },
+    /*sortTrend() {
       this.cards.sort((a, b) => a.type.length - b.type.length);
       return (this.sortButton = "TRENDING");
-    },
+    },*/
     sortI(name) {
       this.cards = this.it.filter(
         (e) => e.type.match(name) || e.color.match(name)
