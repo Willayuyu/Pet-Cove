@@ -13,24 +13,24 @@ export default new Vuex.Store({
       {
         id:0,
         img: require('@/assets/1.jpg'),
-        title: 'sofa 243',
+        title: 'golf 243',
         price: 156,
         color: 'yellow',
-        type: 'sofa'
+        type: 'golf'
       }, {
         id:1,
         img: require('@/assets/2.jpg'),
-        title: 'lamp 54',
+        title: 'tennis 54',
         price: 756,
         color: 'yellow',
-        type: 'lamp'
+        type: 'tennis'
       }, {
         id:2,
         img: require('@/assets/3.jpg'),
-        title: 'fotal 34',
+        title: 'hiking 34',
         price: 362,
         color: 'yellow',
-        type: 'chair'
+        type: 'hiking'
       }, {
         id:3,
         img: require('@/assets/4.jpg'),
@@ -41,10 +41,10 @@ export default new Vuex.Store({
       }, {
         id:4,
         img: require('@/assets/5.jpg'),
-        title: 'sofa-1',
+        title: 'golf-1',
         price: 243,
         color: 'white',
-        type: 'sofa'
+        type: 'golf'
       }, {
         id:5,
         img: require('@/assets/6.jpg'),
@@ -55,73 +55,73 @@ export default new Vuex.Store({
       }, {
         id:6,
         img: require('@/assets/7.jpg'),
-        title: 'Fotal-34',
+        title: 'hiking-34',
         price: 505,
         color: 'blue',
-        type: 'chair'
+        type: 'hiking'
       }, {
         id:7,
         img: require('@/assets/8.jpg'),
-        title: 'foto-4364',
+        title: 'bicycle-4364',
         price: 432,
         color: 'red',
-        type: 'table'
+        type: 'bicycle'
       },
       {
         id:8,
         img: require('@/assets/9.jpg'),
-        title: 'foto-44',
+        title: 'bicycle-44',
         price: 390,
         color: 'white',
-        type: 'table'
+        type: 'bicycle'
       },
       {
         id:9,
         img: require('@/assets/10.jpg'),
-        title: 'foto-34',
+        title: 'hiking-34',
         price: 756,
         color: 'yellow',
-        type: 'chair'
+        type: 'hiking'
       },
       {
         id:10,
         img: require('@/assets/11.jpg'),
-        title: 'foto-23',
+        title: 'hiking-23',
         price: 44,
         color: 'white',
-        type: 'chair'
+        type: 'hiking'
       },
       {
         id:11,
         img: require('@/assets/12.jpg'),
-        title: 'foto-4234',
+        title: 'tennis-4234',
         price: 156,
         color: 'red',
-        type: 'lamp'
+        type: 'tennis'
       },
       {
         id:12,
         img: require('@/assets/13.jpg'),
-        title: 'foto-4234',
+        title: 'tennis-4234',
         price: 756,
         color: 'blue',
-        type: 'lamp'
+        type: 'tennis'
       },
       {
         id:13,
         img: require('@/assets/14.jpg'),
-        title: 'foto-4234',
+        title: 'hiking-4234',
         price: 756,
         color: 'white',
-        type: 'chair'
+        type: 'hiking'
       },
       {
         id:14,
         img: require('@/assets/table-1.jpg'),
-        title: 'table-32',
+        title: 'bicycle-32',
         price: 756,
         color: 'white',
-        type: 'table'
+        type: 'bicycle'
       }
     ]
   },

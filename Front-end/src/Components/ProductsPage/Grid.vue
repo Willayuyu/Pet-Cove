@@ -43,10 +43,10 @@
               CATAGORIES
             </button>
             <div class="dropdown-menu" aria-labelledby="MenuLink">
-              <a class="dropdown-item" @click="sortI('table')">Tables</a>
-              <a class="dropdown-item" @click="sortI('lamp')">Lamps</a>
-              <a class="dropdown-item" @click="sortI('chair')">Chairs</a>
-              <a class="dropdown-item" @click="sortI('sofa')">Sofas</a>
+              <a class="dropdown-item" @click="sortI('bicycle')">Bicycle</a>
+              <a class="dropdown-item" @click="sortI('tennis')">Tennis</a>
+              <a class="dropdown-item" @click="sortI('hiking')">Hiking</a>
+              <a class="dropdown-item" @click="sortI('golf')">Golf</a>
               <div class="dropdown-divider"></div>
               <div class="pl-3">
                 <span
@@ -83,10 +83,10 @@
               <div class="search-title">
                 <h4>Catagories +</h4>
                 <br />
-                <h6 @click="sortI('table')">Tables</h6>
-                <h6 @click="sortI('lamp')">Lamps</h6>
-                <h6 @click="sortI('chair')">Chairs</h6>
-                <h6 @click="sortI('sofa')">Sofas</h6>
+                <h6 @click="sortI('bicycle')">Bicycle</h6>
+                <h6 @click="sortI('tennis')">Tennis</h6>
+                <h6 @click="sortI('hiking')">Hiking</h6>
+                <h6 @click="sortI('golf')">Golf</h6>
                 <br /><br /><br />
                 <h4 class="search-title">Filter by +</h4>
                 <br />
