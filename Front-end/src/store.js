@@ -15,56 +15,56 @@ export default new Vuex.Store({
         img: require('@/assets/1.jpg'),
         title: 'golf 243',
         price: 156,
-        color: 'yellow',
+        color: 'blue',
         type: 'golf'
       }, {
         id:1,
         img: require('@/assets/2.jpg'),
         title: 'tennis 54',
         price: 756,
-        color: 'yellow',
+        color: 'black',
         type: 'tennis'
       }, {
         id:2,
         img: require('@/assets/3.jpg'),
         title: 'hiking 34',
         price: 362,
-        color: 'yellow',
+        color: 'black',
         type: 'hiking'
       }, {
         id:3,
         img: require('@/assets/4.jpg'),
         title: 'fotal324',
         price: 505,
-        color: 'red',
+        color: 'black',
         type: 'chair'
       }, {
         id:4,
         img: require('@/assets/5.jpg'),
         title: 'golf-1',
         price: 243,
-        color: 'white',
+        color: 'red',
         type: 'golf'
       }, {
         id:5,
         img: require('@/assets/6.jpg'),
         title: 'Fotal-2',
         price: 44,
-        color: 'white',
+        color: 'red',
         type: 'chair'
       }, {
         id:6,
         img: require('@/assets/7.jpg'),
         title: 'hiking-34',
         price: 505,
-        color: 'blue',
+        color: 'white',
         type: 'hiking'
       }, {
         id:7,
         img: require('@/assets/8.jpg'),
         title: 'bicycle-4364',
         price: 432,
-        color: 'red',
+        color: 'green',
         type: 'bicycle'
       },
       {
@@ -80,7 +80,7 @@ export default new Vuex.Store({
         img: require('@/assets/10.jpg'),
         title: 'hiking-34',
         price: 756,
-        color: 'yellow',
+        color: 'black',
         type: 'hiking'
       },
       {
@@ -88,7 +88,7 @@ export default new Vuex.Store({
         img: require('@/assets/11.jpg'),
         title: 'hiking-23',
         price: 44,
-        color: 'white',
+        color: 'black',
         type: 'hiking'
       },
       {
@@ -104,7 +104,7 @@ export default new Vuex.Store({
         img: require('@/assets/13.jpg'),
         title: 'tennis-4234',
         price: 756,
-        color: 'blue',
+        color: 'black',
         type: 'tennis'
       },
       {
@@ -112,7 +112,7 @@ export default new Vuex.Store({
         img: require('@/assets/14.jpg'),
         title: 'hiking-4234',
         price: 756,
-        color: 'white',
+        color: 'blue',
         type: 'hiking'
       },
       {
@@ -120,7 +120,7 @@ export default new Vuex.Store({
         img: require('@/assets/table-1.jpg'),
         title: 'bicycle-32',
         price: 756,
-        color: 'white',
+        color: 'blue',
         type: 'bicycle'
       }
     ]

@@ -94,8 +94,8 @@
                   <h5>Color</h5>
                   <span
                     class="circle"
-                    style="background-color: yellow"
-                    @click="sortI('yellow')"
+                    style="background-color: black"
+                    @click="sortI('black')"
                   ></span>
                   <span
                     class="circle"
@@ -214,7 +214,7 @@ export default {
       this.cards = this.it.filter((card) => {
         return (
           card.title.toLowerCase().includes(this.searchText) ||
-          card.description.toLowerCase().includes(this.searchText)
+          card.type.toLowerCase().includes(this.searchText)
         );
       });
     },
