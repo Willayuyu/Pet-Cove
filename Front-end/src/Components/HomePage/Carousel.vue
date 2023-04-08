@@ -8,26 +8,35 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="img-fluid" src="@/assets/jum1.jpg" alt="First slide">
+          <img class="img-fluid" src="@/assets/jum1.jpg" alt="First slide" />
         </div>
         <div class="carousel-item">
-          <img class="img-fluid" src="@/assets/jum2.jpg" alt="Second slide">
+          <img class="img-fluid" src="@/assets/jum2.jpg" alt="Second slide" />
         </div>
         <div class="carousel-item">
-          <img class="img-fluid" src="@/assets/jum3.jpg" alt="Third slide">
+          <img class="img-fluid" src="@/assets/jum3.jpg" alt="Third slide" />
         </div>
       </div>
     </div>
   </section>
 </template>
-
 <script>
 export default {
-  name: 'Carousel'
-}
+  name: "Carousel",
+  /* eslint-disable */
+  mounted() {
+    $("#heroControls").carousel();
+  },
+};
 </script>
-
 <style scoped>
+.carousel-item img {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  height:700px;
+}
+
 .img-fluid {
   min-width: 800px !important;
 }
