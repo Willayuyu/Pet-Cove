@@ -30,15 +30,17 @@
           <div class="footer-widget">
             <div class="footer-title">Catagories</div>
             <ul class="list-unstyled">
-              <router-link to="/products"><li>Tables</li></router-link>
-              <router-link to="/products"><li>Lamps</li></router-link>
-              <router-link to="/products"><li>Chairs</li></router-link>
-              <router-link to="/products"><li>Sofas</li></router-link>
+              <router-link to="/products"><li>Bicycle</li></router-link>
+              <router-link to="/products"><li>Tennis</li></router-link>
+              <router-link to="/products"><li>Hiking</li></router-link>
+              <router-link to="/products"><li>Golf</li></router-link>
             </ul>
           </div>
         </div>
 
-        <div class="col-12 col-xl-6 col-lg-3 col-md-3 col-sm-12 text-left text-md-right pb-5">
+        <div
+          class="col-12 col-xl-6 col-lg-3 col-md-3 col-sm-12 text-left text-md-right pb-5"
+        >
           <div class="footer-widget">
             <h4>399 Crowfield Road,</h4>
             <h4>Phoenix, Arizona 85012</h4>
@@ -46,22 +48,21 @@
             <h6>+602-926-5809</h6>
           </div>
         </div>
-
       </div>
 
       <div class="row justify-content-between">
         <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 col-6">
           <div class="tiny-footer">
-            <p>Copyright © All Rights Reserved 2020 </p>
+            <p>Copyright © All Rights Reserved 2023</p>
           </div>
         </div>
         <div class="col-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 text-right">
           <div class="social-info">
             <strong>Get social</strong>
-            <img class="twitter" src="@/assets/twitter.png">
-            <img class="pinterest" src="@/assets/pinterest.png">
-            <img class="facebook" src="@/assets/facebook.png">
-            <img class="instagram" src="@/assets/insta.png">
+            <img class="twitter" src="@/assets/twitter.png" />
+            <img class="pinterest" src="@/assets/pinterest.png" />
+            <img class="facebook" src="@/assets/facebook.png" />
+            <img class="instagram" src="@/assets/insta.png" />
           </div>
         </div>
       </div>
@@ -71,8 +72,8 @@
 
 <script>
 export default {
-  name: 'Footer'
-}
+  name: "Footer",
+};
 </script>
 
 <style scoped>
@@ -101,12 +102,11 @@ export default {
   margin-bottom: 10px;
 }
 
-.social-info>img {
+.social-info > img {
   padding-left: 10px;
 }
 
-.social-info>img:hover {
+.social-info > img:hover {
   opacity: 0.7;
 }
-
 </style>
