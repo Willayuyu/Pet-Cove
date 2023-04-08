@@ -3,7 +3,7 @@
     <div class="container-fluid py-5">
       <div class="row d-flex">
         <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 order-sm-0 order-12" style="margin-right:-120px;">
-          <img class="img-fluid" src="@/assets/con.jpg">
+          <img class="img-fluid" src="@/assets/contact.jpg">
         </div>
         <div class="col-12 col-xl-6 col-lg-5 col-md-6 col-sm-12 order-first order-xl-0">
           <h1>Hello there</h1>
@@ -101,6 +101,9 @@ form button {
   padding: 0px 30px;
   cursor: pointer;
   box-shadow: 0 26px 38px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.img-fluid{
+  max-width: 600px;
 }
 
 </style>
