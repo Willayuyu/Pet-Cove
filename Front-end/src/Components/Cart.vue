@@ -44,7 +44,7 @@
             <h4>${{ cartPrice }}</h4>
           </div>
         </div>
-        <button class="btn btn-primary btn-checkout">Checkout</button>
+        <button class="btn btn-primary btn-checkout" @click="checkout" >Checkout</button>
 
       </div>
     </div>
@@ -87,6 +87,7 @@ export default {
       // Handle checkout logic here
       /* eslint-disable */
       console.log('Checkout clicked');
+      this.$router.push('/checkout');
     }
   },
 };

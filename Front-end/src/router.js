@@ -11,6 +11,7 @@ const Register = () => import('@/views/Register.vue');
 const SellerHomePage = () => import('@/views/Seller/SellerHomePage.vue')
 const BuyerHomePage = () => import('./Components/BuyerPage/BuyerHomePage.vue')
 const TestPage = () => import('@/views/Test/TestPage.vue')
+const Checkout =()=>import('./Components/Checkout.vue')
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ export default new Router({
       path: '/buyerHomePage',
       name: 'BuyHomePage',
       component: BuyerHomePage
+    },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout
     },
     
   ],
