@@ -21,7 +21,7 @@
               <textarea class="form-control" style="overflow:hidden; height:130px" rows="3" required></textarea>
               <label class="label" for="Message">Message</label>
             </div>
-              <button class="btn btn-light" href="#" role="button">submit</button>
+              <button class="btn btn-light" href="#" role="button" @click="submit">submit</button>
           </form>
         </div>
         </div>
@@ -31,7 +31,12 @@
 
 <script>
 export default {
-  name: 'ContactForm'
+  name: 'ContactForm',
+  methods:{
+    submit(){
+      alert('Thanks for your message. we will response as soon as possible!')
+    }
+  }
 }
 </script>
 
