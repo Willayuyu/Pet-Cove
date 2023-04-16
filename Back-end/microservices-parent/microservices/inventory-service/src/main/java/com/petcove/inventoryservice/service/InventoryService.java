@@ -26,7 +26,7 @@ public class InventoryService {
         Thread.sleep(10000);
         log.info("wait ended");
         */
-        //check if the *object is present inside the optional or not
+        //check if the *object git is present inside the optional or not
         return inventoryRepository.findBySkuCodeIn(skuCode).stream()
                 .map(inventory ->
                     InventoryResponse.builder()
