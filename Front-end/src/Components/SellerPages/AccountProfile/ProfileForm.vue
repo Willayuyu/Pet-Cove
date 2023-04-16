@@ -69,6 +69,7 @@
         <div class="mt-5">
             <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
+            <b-button class="ml-auto logout" variant="outline-secondary" @click="onLogout">Logout</b-button>
         </div>
             
         </b-form>
@@ -120,8 +121,17 @@ export default {
             this.$nextTick(() => {
                 this.show = true
             })
+        },
+        onLogout() {
+            this.$store.state.isLoggedIn = false;
+            this.$router.push("/");
         }
     }
 }
 </script>
+<style scoped>
+.logout{
+    margin-left: 10px !important;
+}
+</style>
 

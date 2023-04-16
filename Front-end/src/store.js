@@ -10,6 +10,7 @@ export default new Vuex.Store({
     infoPage:[],
     cartItems:[],
     isLoggedIn: false,
+    isSeller:false,
     userAvatar:'',
     items: [
       {

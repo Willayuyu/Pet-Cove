@@ -85,7 +85,9 @@ export default {
 
       if (isValid) {
         this.$store.state.isLoggedIn = true;
+        this.$store.state.isSeller = this.isSeller;
         if (this.isSeller) {
+
           this.$router.push("/sellerHomePage");
         } else {
           this.$router.push("/buyerHomePage");

@@ -51,30 +51,13 @@
                 <b-form-input id="address" v-model="form.address" type="test" placeholder="Enter your street/no. and postal code/city."
                     ></b-form-input>
             </b-form-group>
-
-            <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-                <b-form-select id="input-3" v-model="form.food" :options="foods" required></b-form-select>
-            </b-form-group> -->
-
-            <!-- <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group> -->
         <div class="mt-5">
             <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
+            <b-button class="ml-auto logout" variant="outline-secondary" @click="onLogout">Logout</b-button>
         </div>
             
         </b-form>
-        <!-- <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card> -->
 
 
     </div>
@@ -120,8 +103,17 @@ export default {
             this.$nextTick(() => {
                 this.show = true
             })
+        },
+        onLogout() {
+            this.$store.state.isLoggedIn = false;
+            this.$router.push("/");
         }
     }
 }
 </script>
+<style scoped>
+.logout{
+    margin-left: 10px !important;
+}
+</style>
 

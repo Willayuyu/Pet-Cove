@@ -38,7 +38,13 @@
       <section class="loginSection">
         <!-- If the user is logged in, show the avatar instead of the links -->
         <div v-if="this.$store.state.isLoggedIn">
-          <img :src="userAvatar" class="avatar" />
+          <img
+            :src="
+              typeof userAvatar === 'string' ? userAvatar : '../assets/OIP.jpg'
+            "
+            class="avatar"
+            @click="getProfile"
+          />
         </div>
         <!-- If the user is not logged in, show the links -->
         <div v-else>
@@ -120,7 +126,8 @@ import Cart from "@/Components/Cart.vue";
 export default {
   data() {
     return {
-      userAvatar: this.$store.state.userAvatar // replace this with the path to the user's avatar
+      isSeller: this.$store.state.isSeller,
+      userAvatar: this.$store.state.userAvatar, // replace this with the path to the user's avatar
     };
   },
   name: "Header",
@@ -135,6 +142,13 @@ export default {
   methods: {
     openCart() {
       this.$refs.cartMove.cartON();
+    },
+    getProfile() {
+      if (this.isSeller) {
+        this.$router.push("/sellerHomePage");
+      } else {
+        this.$router.push("/buyerHomePage");
+      }
     },
   },
 };
@@ -244,5 +258,6 @@ form .btn-xl.btn-success.mt-3 {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 20px;
 }
 </style>
