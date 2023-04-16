@@ -133,15 +133,13 @@ export default {
         this.$store.state.isLoggedIn = true;
         this.$store.state.isSeller = this.isSeller;
         if (this.isSeller) {
-          if (this.isSeller) {
-            this.$router.push("/sellerHomePage");
-          } else {
-            this.$router.push("/buyerHomePage");
-          }
+          this.$router.push("/sellerHomePage");
         } else {
-          // 存在空白字段，显示提示信息
-          alert("Please fill in all fields.");
+          this.$router.push("/buyerHomePage");
         }
+      } else {
+        // 存在空白字段，显示提示信息
+        alert("Please fill in all fields.");
       }
     },
   },
