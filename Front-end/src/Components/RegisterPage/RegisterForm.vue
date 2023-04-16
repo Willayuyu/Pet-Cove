@@ -69,16 +69,13 @@
             </div> -->
 
           <div class="rememberMe">
-            <input type="checkbox" name="remember" v-model="isSeller"/>
+            <input type="checkbox" name="remember" v-model="isSeller" />
             <p class="message">Register as a seller.</p>
           </div>
 
-          <router-link
-            class="loginBtn"
-            :to="registrationPage"
-            tag="button">
+          <button class="loginBtn" @click.prevent="validateForm" type="submit">
             Register
-          </router-link>
+          </button>
         </form>
         <p class="join">
           Already a member?
@@ -108,23 +105,45 @@ export default {
   data() {
     return {
       isSeller: false,
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      telephone: "",
+      password: "",
       buyerHomePage: "/buyerHomePage",
-      sellerHomePage: "/sellerHomePage"
-    }
+      sellerHomePage: "/sellerHomePage",
+    };
   },
-  computed: {
-    registrationPage() {
-      /* eslint-disable */
-      this.$store.state.isLoggedIn = true;
-      if (this.isSeller) {
-        return this.sellerHomePage;
+methods: {
+  validateForm() {
+    const inputs = document.querySelectorAll(".login input");
+    let isValid = true;
+
+    for (let i = 0; i < inputs.length; i++) {
+      if (!inputs[i].value) {
+        isValid = false;
+        inputs[i].classList.add("invalid");
       } else {
-        return this.buyerHomePage;
+        inputs[i].classList.remove("invalid");
       }
     }
-  }
-};
 
+    if (isValid) {
+      this.$store.state.isLoggedIn = true;
+      if (this.isSeller) {
+        this.$router.push("/sellerHomePage");
+      } else {
+        this.$router.push("/buyerHomePage");
+      }
+    } else {
+      // 存在空白字段，显示提示信息
+      alert("Please fill in all fields.");
+    }
+  }
+}
+
+};
 </script>
   
   <style scoped>

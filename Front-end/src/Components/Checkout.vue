@@ -4,7 +4,6 @@
         <div v-if="!isLoggedIn">
             <p>Please log in or checkout as a guest:</p>
             <button @click="login">Log In</button>
-            <button @click="checkoutAsGuest">Checkout as Guest</button>
         </div>
         <div v-else>
             <p>Logged in as {{ username }}</p>
@@ -51,7 +50,7 @@ import { Script } from "vm";
 export default {
     data() {
         return {
-            isLoggedIn: false,
+            isLoggedIn: this.$store.state.isLoggedIn,
             username: "",
             items: [
                 { name: "Item 1", price: 10 },
@@ -72,12 +71,7 @@ export default {
     },
     methods: {
         login() {
-            // implement login functionality here
-            // set isLoggedIn to true and set username
-        },
-        checkoutAsGuest() {
-            // implement checkout as guest functionality here
-            // set isLoggedIn to false and leave username empty
+            this.$router.push('/login');
         },
         processPayment() {
             if (this.selectedPaymentMethod === "credit-card") {

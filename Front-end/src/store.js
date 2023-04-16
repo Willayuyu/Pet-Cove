@@ -10,7 +10,7 @@ export default new Vuex.Store({
     infoPage:[],
     cartItems:[],
     isLoggedIn: false,
-    userAvatar:'@/assets/1.jpg',
+    userAvatar:'',
     items: [
       {
         id:0,
