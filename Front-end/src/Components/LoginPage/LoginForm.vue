@@ -30,13 +30,9 @@ const isLoggedIn = this.$root.isLoggedIn;
           </div>
 
           <!-- <button class="loginBtn" type="">Login</button> -->
-          <router-link
-            class="loginBtn"
-            :to="loginPage"
-            tag="button"
-          >
+          <button class="loginBtn" @click.prevent="validateForm" type="submit">
             Login
-          </router-link>
+          </button>
         </form>
         <div class="noPassword">
           <router-link class="forgotPassword" to=""
@@ -71,18 +67,32 @@ export default {
   data() {
     return {
       isSeller: false,
-      buyerHomePage: "/buyerHomePage",
-      sellerHomePage: "/sellerHomePage",
     };
   },
-  computed: {
-    loginPage() {
-      /* eslint-disable */
-      this.$store.state.isLoggedIn = true;
-      if (this.isSeller) {
-        return this.sellerHomePage;
+  methods: {
+    validateForm() {
+      const inputs = document.querySelectorAll(".login input");
+      let isValid = true;
+
+      for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value) {
+          isValid = false;
+          inputs[i].classList.add("invalid");
+        } else {
+          inputs[i].classList.remove("invalid");
+        }
+      }
+
+      if (isValid) {
+        this.$store.state.isLoggedIn = true;
+        if (this.isSeller) {
+          this.$router.push("/sellerHomePage");
+        } else {
+          this.$router.push("/buyerHomePage");
+        }
       } else {
-        return this.buyerHomePage;
+        // 存在空白字段，显示提示信息
+        alert("Please fill in all fields.");
       }
     },
   },

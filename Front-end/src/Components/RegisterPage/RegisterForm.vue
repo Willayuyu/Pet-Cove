@@ -115,34 +115,33 @@ export default {
       sellerHomePage: "/sellerHomePage",
     };
   },
-methods: {
-  validateForm() {
-    const inputs = document.querySelectorAll(".login input");
-    let isValid = true;
+  methods: {
+    validateForm() {
+      const inputs = document.querySelectorAll(".login input");
+      let isValid = true;
 
-    for (let i = 0; i < inputs.length; i++) {
-      if (!inputs[i].value) {
-        isValid = false;
-        inputs[i].classList.add("invalid");
-      } else {
-        inputs[i].classList.remove("invalid");
+      for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value) {
+          isValid = false;
+          inputs[i].classList.add("invalid");
+        } else {
+          inputs[i].classList.remove("invalid");
+        }
       }
-    }
 
-    if (isValid) {
-      this.$store.state.isLoggedIn = true;
-      if (this.isSeller) {
-        this.$router.push("/sellerHomePage");
+      if (isValid) {
+        this.$store.state.isLoggedIn = true;
+        if (this.isSeller) {
+          this.$router.push("/sellerHomePage");
+        } else {
+          this.$router.push("/buyerHomePage");
+        }
       } else {
-        this.$router.push("/buyerHomePage");
+        // 存在空白字段，显示提示信息
+        alert("Please fill in all fields.");
       }
-    } else {
-      // 存在空白字段，显示提示信息
-      alert("Please fill in all fields.");
-    }
-  }
-}
-
+    },
+  },
 };
 </script>
   
