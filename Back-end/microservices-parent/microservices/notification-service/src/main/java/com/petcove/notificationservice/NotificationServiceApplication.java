@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
 
+import java.util.Map;
+
 @SpringBootApplication
 @Slf4j
 public class NotificationServiceApplication {
@@ -14,6 +16,7 @@ public class NotificationServiceApplication {
 
     @KafkaListener(topics = "notificationTopic")
     public void handelNotification(OrderPlacedEvent orderPlacedEvent){
-        log.info("Received notification from order - {}", orderPlacedEvent.getOrderNumber());
+        //String sq = orderPlacedEvent.getId();
+        //log.info(sq);
     }
 }
