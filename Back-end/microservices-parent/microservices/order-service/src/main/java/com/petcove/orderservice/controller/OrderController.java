@@ -29,8 +29,14 @@ public class OrderController {
         log.info("/api/order is called with POST method");
         return CompletableFuture.supplyAsync(()->orderService.placeOrder(orderRequest));
     }
+
+    // multiple fallback method can be defined here, the exception type should be the differentiator
     public CompletableFuture<String> fallbackMethod(OrderRequest orderRequest, RuntimeException runtimeException){
 
         return CompletableFuture.supplyAsync(()->"Something went wrong. Please try it later.");
+    }
+    public CompletableFuture<String> fallbackMethod(OrderRequest orderRequest, IllegalArgumentException illegalArgumentException){
+
+        return CompletableFuture.supplyAsync(()->"Product is not in stock at the moment.");
     }
 }
