@@ -21,7 +21,7 @@ public class OrderAdapter {
                 .totalAmount(orderRequest.getTotalAmount())
                 //.orderDate(orderAddRequest.getOrderDate())
                 .orderNumber(UUID.randomUUID().toString())
-                .orderStatus(OrderStatus.Handling)
+                .orderStatus(OrderStatus.PENDING)
                 .build();
         log.info("order build 1");
         order.setOrderLineItemsList(toOrderItemEntityList(orderRequest.getOrderLineItemsDtoList(), order));
