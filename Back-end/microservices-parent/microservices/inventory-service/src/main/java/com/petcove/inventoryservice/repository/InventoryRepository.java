@@ -18,5 +18,7 @@ public interface InventoryRepository extends JpaRepository<Inventory,Long> {
             " i.skuCode = :sku AND i.quantity >= :quan")
     List<Inventory> checkAvailability(@Param("sku") String skuCode, @Param("quan") Integer quantity);
 
+    List<Inventory> deleteBySkuCode(String skuCode);
+
     //List<Inventory> findBySkuCodeAndQuantityGreaterThanEqual(List<String> skuCode, List<Integer> quantity);
 }
