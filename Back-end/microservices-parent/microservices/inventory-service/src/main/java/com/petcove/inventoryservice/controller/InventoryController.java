@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/inventory")
@@ -21,8 +20,8 @@ public class InventoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     //判断product是否in stock
-    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode, @RequestParam List<Integer> quantity){
-        return inventoryService.isInstock(skuCode,quantity);
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode){
+        return inventoryService.isInstock(skuCode);
 
     }
 

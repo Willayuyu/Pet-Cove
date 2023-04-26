@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.swing.*;
@@ -30,11 +29,10 @@ public class InventoryServiceApplication {
 
 			Inventory inventory1 = new Inventory();
 			inventory1.setSkuCode("racket1_red");
-			inventory1.setQuantity(4);
+			inventory1.setQuantity(0);
 
 			inventoryRepository.save(inventory);
 			inventoryRepository.save(inventory1);
 		};
 	}
-
 }
