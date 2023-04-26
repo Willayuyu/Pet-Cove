@@ -1,7 +1,7 @@
 package com.petcove.orderservice.model;
 
 public enum OrderStatus {
-    PENDING,
+    Handling,
     PLACED,
     PAID,
     CANCELLED
