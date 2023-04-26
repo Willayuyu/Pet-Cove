@@ -1,8 +1,6 @@
 package com.petcove.inventoryservice.service;
 
 import com.petcove.inventoryservice.dto.InventoryResponse;
-import com.petcove.inventoryservice.dto.ProductAddRequest;
-import com.petcove.inventoryservice.dto.InventoryDto;
 import com.petcove.inventoryservice.model.Inventory;
 import com.petcove.inventoryservice.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +15,34 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class InventoryService {
 
-public interface InventoryService {
-    List<InventoryResponse> isInstock(List<String> skuCode, List<Integer> quantity);
-    InventoryDto createProduct(ProductAddRequest productAddRequest);
-    InventoryDto updateProduct(String skuCode, ProductAddRequest productAddRequest);
-
-    void deleteProduct(String skuCode);
+    private final InventoryRepository inventoryRepository;
+    @Transactional(readOnly = true)
+    //@SneakyThrows
+    public List<InventoryResponse> isInstock(List<String> skuCode, List<Integer> quantity){
+        /*Simulate time-out exception
+        log.info("Wait started");
+        Thread.sleep(10000);
+        log.info("wait ended");
+        */
+        //check if the *object git is present inside the optional or not
+        log.info("start isinstock");
+        Map<String, Integer> sku_quan_map = new HashMap<String,Integer>();
+        for(int i=0; i<skuCode.size(); i++){
+            sku_quan_map.put(skuCode.get(i), quantity.get(i));
+        }
+        log.info(sku_quan_map.toString());
+        return inventoryRepository.findBySkuCodeIn(skuCode).stream()
+                .map(inventory ->
+                    InventoryResponse.builder()
+                            .skuCode(inventory.getSkuCode())
+                            .isInStock(inventory.getQuantity() >= sku_quan_map.get(inventory.getSkuCode()))
+                            .build()
+                ).toList();
+    }
 }
 
