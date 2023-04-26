@@ -3,12 +3,10 @@ package com.petcove.orderservice.service;
 import com.petcove.orderservice.dto.InventoryResponse;
 import com.petcove.orderservice.dto.OrderLineItemsDto;
 import com.petcove.orderservice.dto.OrderRequest;
-import com.petcove.orderservice.event.OrderPlacedEvent;
 import com.petcove.orderservice.model.Order;
 import com.petcove.orderservice.model.OrderLineItems;
 import com.petcove.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -22,7 +20,6 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
-    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
     public String placeOrder(OrderRequest orderRequest){
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
@@ -51,8 +48,6 @@ public class OrderService {
 
         if(allProductsInStock){
             orderRepository.save(order);
-            // send the order placed event as a msg to the notification topic
-            kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
             return "Order placed successfully.";
         }else {
             throw new IllegalArgumentException("Product is not in stock at the moment.");
