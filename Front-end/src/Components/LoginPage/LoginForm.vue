@@ -109,7 +109,7 @@ export default {
       });
       console.log(this.username, this.password, this.loginState)
 
-      if (this.loginState == null){
+      if (this.loginState == 1){
         this.$store.state.isLoggedIn = true;
         this.$store.state.isSeller = this.isSeller;
         if (this.isSeller) {
