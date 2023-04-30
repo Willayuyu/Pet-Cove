@@ -12,12 +12,14 @@ const isLoggedIn = this.$root.isLoggedIn;
             class="user"
             type="text"
             name=""
-            placeholder="Enter your username or email"
+            v-model="username"
+            placeholder="Enter your username"
           />
           <input
             class="password"
             type="password"
             name=""
+            v-model="password"
             placeholder="Enter your password"
           />
           <!-- <div class="rememberMe">
@@ -63,9 +65,13 @@ const isLoggedIn = this.$root.isLoggedIn;
 </template>
   
   <script>
+  import axios from 'axios';
 export default {
   data() {
     return {
+      username: '',
+      password: '',
+      loginState: null,
       isSeller: false,
     };
   },
@@ -84,6 +90,25 @@ export default {
       }
 
       if (isValid) {
+
+        // send to backend, check if user exists, password correct.
+        // -1 means user doesn't exist, 0 means password wrong, 1 means correct
+        axios.post('https://10.28.109.154:8080/Login', {
+        params:{
+          username: this.username,
+          password: this.password,
+        }
+      })
+      .then(response => {
+        this.loginState = response.data;
+        // console.log(this.loginState);
+      })
+      .catch(error => {
+        // console.log(error);
+      });
+      console.log(this.username, this.password, this.loginState)
+
+      if (this.loginState == 1){
         this.$store.state.isLoggedIn = true;
         this.$store.state.isSeller = this.isSeller;
         if (this.isSeller) {
@@ -92,6 +117,14 @@ export default {
         } else {
           this.$router.push("/buyerHomePage");
         }
+      }
+      else if (this.loginState == -1) {
+        alert("Username doesn't exist.");
+      }
+      else {
+        alert("Check your username and password.");
+      }
+        
       } else {
         // 存在空白字段，显示提示信息
         alert("Please fill in all fields.");

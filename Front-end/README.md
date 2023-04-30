@@ -14,7 +14,12 @@ npm run serve
 
 # FOR BUILD: 
 npm run build
+
+# FOR AXIOS
+npm install axios
 ```
+
+
 
 # Project Structure 
 
