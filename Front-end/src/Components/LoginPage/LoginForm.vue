@@ -62,7 +62,6 @@ const isLoggedIn = this.$root.isLoggedIn;
   
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -70,6 +69,7 @@ export default {
       password: "",
       loginState: null,
       isSeller: false,
+      userProfile: null,
     };
   },
   methods: {
@@ -87,23 +87,42 @@ export default {
       }
 
       if (isValid) {
-        // Send username and password to the backend API
+        // send to backend, check if user exists, password correct.
+        // -1 means user doesn't exist, 0 means password wrong, 1 means correct
         axios
           .post("/Login", {
             username: this.username,
             password: this.password,
           })
           .then((response) => {
-            // Handle response from API
-            this.loginState = response.data.state;
+            this.loginState = response.data;
             if (this.loginState == 1) {
-              this.$store.state.isLoggedIn = true;
-              this.$store.state.isSeller = this.isSeller;
-              if (this.isSeller) {
-                this.$router.push("/sellerHomePage");
-              } else {
-                this.$router.push("/buyerHomePage");
-              }
+              axios
+                .get("/GetProfile", {
+                  params: {
+                    username: this.username,
+                  },
+                })
+                .then((response) => {
+                  this.userProfile = response.data;
+                  this.$store.state.isLoggedIn = true;
+                  this.$store.state.isSeller = this.userProfile.flag == 1;
+                  if (this.$store.state.isSeller) {
+                    this.$router.push({
+                      name: "sellerHomePage",
+                      params: { profileData: this.userProfile },
+                    });
+                  } else {
+                    this.$router.push({
+                      name: "buyerHomePage",
+                      params: { profileData: this.userProfile },
+                    });
+                  }
+                })
+                .catch((error) => {
+                  /* eslint-disable */
+                  console.log(error);
+                });
             } else if (this.loginState == -1) {
               alert("Username doesn't exist.");
             } else {
@@ -111,7 +130,6 @@ export default {
             }
           })
           .catch((error) => {
-            /* eslint-disable */
             console.log(error);
           });
       } else {
@@ -121,6 +139,7 @@ export default {
   },
 };
 </script>
+
 
   
 <style scoped>
