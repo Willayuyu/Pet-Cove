@@ -22,10 +22,6 @@ const isLoggedIn = this.$root.isLoggedIn;
             v-model="password"
             placeholder="Enter your password"
           />
-          <!-- <div class="rememberMe">
-              <input type="checkbox" name="remember" />
-              <p class="message">Remember me</p>
-            </div> -->
           <div class="rememberMe">
             <input type="checkbox" name="remember" v-model="isSeller" />
             <p class="message">Login as a seller</p>
@@ -64,13 +60,14 @@ const isLoggedIn = this.$root.isLoggedIn;
   </section>
 </template>
   
-  <script>
-  import axios from 'axios';
+<script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       loginState: null,
       isSeller: false,
     };
@@ -90,52 +87,43 @@ export default {
       }
 
       if (isValid) {
-
-        // send to backend, check if user exists, password correct.
-        // -1 means user doesn't exist, 0 means password wrong, 1 means correct
-        axios.post('https://10.28.109.154:8080/Login', 
-        {
-        params:{
-          username: this.username,
-          password: this.password,
-        }
-      })
-      .then(response => {
-        this.loginState = response.data;
-        // console.log(this.loginState);
-      })
-      .catch(error => {
-        // console.log(error);
-      });
-      console.log(this.username, this.password, this.loginState)
-
-      if (this.loginState == 1){
-        this.$store.state.isLoggedIn = true;
-        this.$store.state.isSeller = this.isSeller;
-        if (this.isSeller) {
-
-          this.$router.push("/sellerHomePage");
-        } else {
-          this.$router.push("/buyerHomePage");
-        }
-      }
-      else if (this.loginState == -1) {
-        alert("Username doesn't exist.");
-      }
-      else {
-        alert("Check your username and password.");
-      }
-        
+        // Send username and password to the backend API
+        axios
+          .post("/Login", {
+            username: this.username,
+            password: this.password,
+          })
+          .then((response) => {
+            // Handle response from API
+            this.loginState = response.data.state;
+            if (this.loginState == 1) {
+              this.$store.state.isLoggedIn = true;
+              this.$store.state.isSeller = this.isSeller;
+              if (this.isSeller) {
+                this.$router.push("/sellerHomePage");
+              } else {
+                this.$router.push("/buyerHomePage");
+              }
+            } else if (this.loginState == -1) {
+              alert("Username doesn't exist.");
+            } else {
+              alert("Check your username and password.");
+            }
+          })
+          .catch((error) => {
+            /* eslint-disable */
+            console.log(error);
+          });
       } else {
-        // 存在空白字段，显示提示信息
         alert("Please fill in all fields.");
       }
     },
   },
 };
 </script>
+
   
-  <style scoped>
+<style scoped>
 .loginSection {
   /* height: 70vh; */
   display: flex;
@@ -145,22 +133,27 @@ export default {
   gap: 2rem;
   margin: 1rem 0 2rem 0;
 }
+
 .msg {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .welcome {
   font-size: 2rem;
 }
+
 .instructions {
   color: var(--carbonLight);
 }
+
 .login {
   display: flex;
   flex-direction: column;
 }
+
 .user,
 .password {
   display: flex;
@@ -174,22 +167,27 @@ export default {
   font-size: 1.2rem;
   transition: 0.3s;
 }
+
 input::placeholder {
   color: var(--carbonLight);
   font-size: 0.9rem;
 }
+
 input:focus {
   box-shadow: 0 0 10px var(--blue);
 }
+
 .rememberMe {
   margin-top: 0.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .rememberMe p {
   margin: 0 0 0 0.2rem;
 }
+
 .loginBtn {
   border: solid 1px var(--blue);
   color: black;
@@ -200,17 +198,21 @@ input:focus {
   transition: 0.3s;
   margin: 0.5rem 0;
 }
+
 .loginBtn:hover {
   background-color: rgb(182, 221, 248);
   border: solid 1px var(--carbonLight);
 }
+
 .noPassword {
   text-align: center;
   margin-bottom: 0.2rem;
 }
+
 .forgotPassword {
   font-size: 0.9rem;
 }
+
 .join {
   color: var(--carbonLight);
   font-size: 0.8rem;
@@ -224,10 +226,12 @@ input:focus {
   white-space: nowrap;
   margin: 0.5rem 0;
 }
+
 .divider {
   position: relative;
   display: inline-block;
 }
+
 .divider::after,
 .divider::before {
   content: "";
@@ -237,18 +241,22 @@ input:focus {
   height: 1px;
   background: var(--carbon);
 }
+
 .divider::after {
   left: 100%;
   margin-left: 1rem;
 }
+
 .divider::before {
   right: 100%;
   margin-right: 1rem;
 }
+
 .socialLogin {
   display: flex;
   flex-direction: column;
 }
+
 .socialLoginBtn {
   border: solid 1px var(--carbon);
   color: var(--carbon);
@@ -264,6 +272,7 @@ input:focus {
   gap: 0.5rem;
   transition: 0.4s;
 }
+
 .socialLoginBtn:hover {
   background-color: var(--carbonLight);
   border: solid 1px var(--carbonLight);
