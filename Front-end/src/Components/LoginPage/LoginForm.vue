@@ -93,7 +93,8 @@ export default {
 
         // send to backend, check if user exists, password correct.
         // -1 means user doesn't exist, 0 means password wrong, 1 means correct
-        axios.post('https://10.28.109.154:8080/Login', {
+        axios.post('https://10.28.109.154:8080/Login', 
+        {
         params:{
           username: this.username,
           password: this.password,
@@ -108,7 +109,7 @@ export default {
       });
       console.log(this.username, this.password, this.loginState)
 
-      if (this.loginState == 1){
+      if (this.loginState == null){
         this.$store.state.isLoggedIn = true;
         this.$store.state.isSeller = this.isSeller;
         if (this.isSeller) {
