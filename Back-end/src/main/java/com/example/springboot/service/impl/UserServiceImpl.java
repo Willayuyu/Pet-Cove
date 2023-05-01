@@ -25,9 +25,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getUserByName(String name){
-//        Map<String,Object> columnMap = new HashMap<>();
-//        columnMap.put("user_name", name);
-//        baseMapper.selectByMap(columnMap);
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_name", name);
@@ -39,9 +36,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean checkPassword(String name, String password){
-//        Map<String,Object> columnMap = new HashMap<>();
-//        columnMap.put("user_name", name);
-//        baseMapper.selectByMap(columnMap);
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_name", name);

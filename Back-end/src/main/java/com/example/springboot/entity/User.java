@@ -17,6 +17,12 @@ public class User {
     @TableField("user_name")
     private String username;
 
+    @TableField("user_firstName")
+    private String firstName;
+
+    @TableField("user_lastName")
+    private String lastName;
+
     @TableField("user_pswd")
     private String password;
 

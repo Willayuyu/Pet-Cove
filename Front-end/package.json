@@ -12,6 +12,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.23.1",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "vue": "^2.7.14",
     "vue-router": "^3.0.1",
@@ -20,6 +21,8 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "@vue/cli-plugin-babel": "^3.1.1",
     "@vue/cli-plugin-eslint": "^3.1.5",
     "@vue/cli-service": "^3.1.4",

@@ -17,6 +17,11 @@ npm run build
 
 # FOR AXIOS
 npm install axios
+
+# FOR CROS (Cross-Origin Resource Sharing)
+npm install cors
+
+
 ```
 
 

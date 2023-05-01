@@ -5,9 +5,10 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:postgresql://47.113.102.153:5432/project2
-    url: jdbc:mysql://10.28.141.164:3306/e-commercial
-    username: yijie
-    password: yijiease
+#    url: jdbc:mysql://10.28.141.164:3306/e-commercial
+    url: jdbc:mysql://localhost:3306/ASE
+    username: root
+    password: '@X17347907390'
 
 logging:
   level:

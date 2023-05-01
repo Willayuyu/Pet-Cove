@@ -63,6 +63,17 @@ const isLoggedIn = this.$root.isLoggedIn;
 <script>
 import axios from "axios";
 
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8080', 
+});
+
+// const express = require('express');
+// const cors = require('cors');
+// const app = express();
+
+// app.use(cors())
+
+
 export default {
   data() {
     return {
@@ -96,6 +107,7 @@ export default {
           .then((response) => {
             // Handle response from API
             this.loginState = response.data.state;
+            console.log(this.loginState)
             if (this.loginState == 1) {
               this.$store.state.isLoggedIn = true;
               this.$store.state.isSeller = this.isSeller;
