@@ -9,10 +9,27 @@
         <result column="product_num" property="productNum"/>
         <result column="product_image" property="productImage"/>
         <result column="product_status" property="productStatus"/>
+        <result column="product_categories" property="productCategories"/>
+        <result column="product_color" property="productColor"/>
     </resultMap>
 
     <!--findAllProduct-->
     <select id="findAllProduct" resultMap="ProductEntityMap">
         SELECT * FROM product WHERE product_status=1
     </select>
+    <!--findProductByInput-->
+    <select id="findProductByInput" resultMap="ProductEntityMap">
+        SELECT * FROM product
+        WHERE product_status=1
+            <if test="productName != null and productName != ''">
+                AND product_name LIKE CONCAT('%', #{productName}, '%')
+            </if>
+            <if test="productCategories != null and productCategories != ''">
+                AND product_categories = #{productCategories}
+            </if>
+            <if test="productColor != null and productColor != ''">
+                AND product_color = #{productColor}
+            </if>
+    </select>
+
 </mapper>

@@ -27,6 +27,11 @@ public class Product implements Serializable {
     @TableField("product_status")
     private Integer productStatus;
 
+    @TableField("product_categories")
+    private String productCategories;
+    @TableField("product_color")
+    private String productColor;
+
 
 }
 
