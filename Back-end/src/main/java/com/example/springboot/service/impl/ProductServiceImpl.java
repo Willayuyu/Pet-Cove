@@ -33,4 +33,15 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findProductByInput(Map<String, Object> params){
         return productMapper.findProductByInput(params);
     }
+
+    /**
+     * insertProduct
+     * @param product
+     */
+    @Override
+    public void insertProduct(Product product) {
+        productMapper.insertProduct(product);
+    }
+
+
 }

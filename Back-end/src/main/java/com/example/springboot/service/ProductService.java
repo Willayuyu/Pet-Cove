@@ -22,4 +22,12 @@ public interface ProductService {
      */
     List<Product> findProductByInput(Map<String, Object> params);
 
+    /**
+     * insertProduct
+     * @param product
+     */
+    void insertProduct(Product product);
+
+
+
 }

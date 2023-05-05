@@ -20,4 +20,10 @@ public interface ProductMapper {
      * findProductByInput
      */
     List<Product> findProductByInput(@Param("params") Map<String, Object> params);
+
+    /**
+     * insertProduct
+     * @param product
+     */
+    void insertProduct(Product product);
 }

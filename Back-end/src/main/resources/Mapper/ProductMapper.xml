@@ -31,5 +31,13 @@
                 AND product_color = #{productColor}
             </if>
     </select>
+    <!--findProductByInput-->
+    <insert id="insertProduct" parameterType="com.example.springboot.entity.Product">
+        INSERT INTO product
+        (product_name, product_description, product_price, product_num, product_image, product_status, product_categories, product_color)
+        VALUES
+        (#{productName}, #{productDescription}, #{productPrice}, #{productNum}, #{productImage}, #{productStatus}, #{productCategories}, #{productColor})
+    </insert>
+
 
 </mapper>
