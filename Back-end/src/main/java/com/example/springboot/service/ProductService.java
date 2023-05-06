@@ -35,6 +35,14 @@ public interface ProductService {
      */
     int deleteProductById(Integer productId);
 
+    /**
+     * updateProductById
+     * @param product
+     * @return
+     */
+    int updateProductById(Product product);
+
+
 
 
 }

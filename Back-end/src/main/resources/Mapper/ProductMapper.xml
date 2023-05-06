@@ -45,5 +45,21 @@
         WHERE product_id = #{productId} AND product_status = 1
     </update>
 
+    <!-- updateProductById -->
+    <update id="updateProductById" parameterType="com.example.springboot.entity.Product">
+        UPDATE product
+        SET
+        product_name = #{productName},
+        product_description = #{productDescription},
+        product_price = #{productPrice},
+        product_num = #{productNum},
+        product_image = #{productImage},
+        product_status = #{productStatus},
+        product_categories = #{productCategories},
+        product_color = #{productColor}
+        WHERE
+        product_id = #{productId}
+    </update>
+
 
 </mapper>

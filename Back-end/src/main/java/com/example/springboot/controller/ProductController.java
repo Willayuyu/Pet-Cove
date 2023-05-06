@@ -72,6 +72,18 @@ public class ProductController {
         }
     }
 
+    @PutMapping("/{productId}/updateProductById")
+    public ResponseEntity<String> updateProductById(@PathVariable("productId") Integer productId, @RequestBody Product product) {
+        product.setProductId(productId);
+        int updatedRows = productService.updateProductById(product);
+
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().body("Product updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
+        }
+    }
+
 
 
 
