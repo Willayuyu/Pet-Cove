@@ -26,4 +26,11 @@ public interface ProductMapper {
      * @param product
      */
     void insertProduct(Product product);
+
+    /**
+     * deleteProductById
+     * @param productId
+     * @return
+     */
+    int deleteProductById(Integer productId);
 }

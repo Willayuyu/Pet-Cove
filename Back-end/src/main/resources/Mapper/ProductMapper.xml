@@ -38,6 +38,12 @@
         VALUES
         (#{productName}, #{productDescription}, #{productPrice}, #{productNum}, #{productImage}, #{productStatus}, #{productCategories}, #{productColor})
     </insert>
+    <!-- deleteProductById -->
+    <update id="deleteProductById" parameterType="java.lang.Integer">
+        UPDATE product
+        SET product_status = 2
+        WHERE product_id = #{productId} AND product_status = 1
+    </update>
 
 
 </mapper>

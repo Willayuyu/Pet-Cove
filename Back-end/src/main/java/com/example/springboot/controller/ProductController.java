@@ -57,6 +57,23 @@ public class ProductController {
         return new ResponseEntity<>("Product added successfully.", HttpStatus.CREATED);
     }
 
+    /**
+     * deleteProductById
+     * @param productId
+     * @return
+     */
+    @DeleteMapping("/{productId}/deleteProductById")
+    public String deleteProductById(@PathVariable("productId") Integer productId) {
+        int rowsAffected = productService.deleteProductById(productId);
+        if (rowsAffected > 0) {
+            return "Product deletes successfully!";
+        } else {
+            return "Failed to delete product!";
+        }
+    }
+
+
+
 
 
 }
