@@ -72,6 +72,12 @@ public class ProductController {
         }
     }
 
+    /**
+     * updateProductById
+     * @param productId
+     * @param product
+     * @return
+     */
     @PutMapping("/{productId}/updateProductById")
     public ResponseEntity<String> updateProductById(@PathVariable("productId") Integer productId, @RequestBody Product product) {
         product.setProductId(productId);
