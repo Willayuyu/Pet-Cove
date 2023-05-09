@@ -28,6 +28,15 @@ public class ProductController {
     }
 
 
+    /**
+     * findProductByInput
+     * @param productName
+     * @param productCategories
+     * @param productColor
+     * @param minPrice
+     * @param maxPrice
+     * @return
+     */
     @RequestMapping("/findProductByInput")
     public List<Product> findProductByInput(@RequestParam(value = "productName", required = false) String productName,
                                             @RequestParam(value = "productCategories", required = false) String productCategories,
