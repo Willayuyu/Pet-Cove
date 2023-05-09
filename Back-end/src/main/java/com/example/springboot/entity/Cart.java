@@ -26,4 +26,7 @@ public class Cart {
     @TableField("product_image")
     private String productImage;
 
+    @TableField("total_price")
+    private Long totalPrice;
+
 }

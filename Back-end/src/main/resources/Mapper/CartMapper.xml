@@ -18,5 +18,27 @@
         VALUES
         (#{userId}, #{userName}, #{productId}, #{productName}, #{productPrice}, #{productQuantity}, #{productImage})
     </insert>
+    <!--deleteCartItem-->
+    <delete id="deleteCartItem" parameterType="com.example.springboot.entity.Cart">
+        DELETE FROM cart
+        WHERE cart_id = #{cartId}
+        AND user_id = #{userId}
+        AND product_id = #{productId}
+    </delete>
+
+    <!-- updateCartItemQuantity -->
+    <update id="updateCartItemQuantity" parameterType="java.lang.Integer">
+        UPDATE cart
+        SET product_quantity = #{productQuantity}
+        WHERE cart_id = #{cartId}
+    </update>
+
+    <!--getAllCartItems-->
+    <select id="getAllCartItems" parameterType="java.lang.Integer" resultMap="CartEntityMap">
+        SELECT * FROM cart WHERE user_id = #{userId}
+    </select>
+
+
+
 
 </mapper>
