@@ -27,21 +27,20 @@ public class ProductController {
         return list;
     }
 
-    /**
-     * findProductByInput
-     * @param productName
-     * @param productCategories
-     * @param productColor
-     * @return
-     */
-    @GetMapping("/findProductByInput")
-    public List<Product> findProductByInput(@RequestParam(required = false) String productName,
-                                            @RequestParam(required = false) String productCategories,
-                                            @RequestParam(required = false) String productColor){
+
+    @RequestMapping("/findProductByInput")
+    public List<Product> findProductByInput(@RequestParam(value = "productName", required = false) String productName,
+                                            @RequestParam(value = "productCategories", required = false) String productCategories,
+                                            @RequestParam(value = "productColor", required = false) String productColor,
+                                            @RequestParam(value = "minPrice", required = false) Long minPrice,
+                                            @RequestParam(value = "maxPrice", required = false) Long maxPrice){
         Map<String, Object> params = new HashMap<>();
         params.put("productName", productName);
         params.put("productCategories", productCategories);
         params.put("productColor", productColor);
+        params.put("minPrice",minPrice);
+        params.put("maxPrice",maxPrice);
+
 
         return productService.findProductByInput(params);
     }

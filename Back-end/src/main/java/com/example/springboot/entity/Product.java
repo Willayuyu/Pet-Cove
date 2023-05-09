@@ -32,6 +32,11 @@ public class Product implements Serializable {
     @TableField("product_color")
     private String productColor;
 
+    @TableField("minPrice")
+    private Long minPrice;
+    @TableField("maxPrice")
+    private Long maxPrice;
+
 
 }
 

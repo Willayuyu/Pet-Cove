@@ -11,6 +11,8 @@
         <result column="product_status" property="productStatus"/>
         <result column="product_categories" property="productCategories"/>
         <result column="product_color" property="productColor"/>
+        <result column="minPrice" property="minPrice"/>
+        <result column="maxPrice" property="maxPrice"/>
     </resultMap>
 
     <!--findAllProduct-->
@@ -21,6 +23,9 @@
     <select id="findProductByInput" resultMap="ProductEntityMap">
         SELECT * FROM product
         WHERE product_status=1
+            <if test="minPrice != null and maxPrice != null">
+                AND product_price BETWEEN #{minPrice} AND #{maxPrice}
+            </if>
             <if test="productName != null and productName != ''">
                 AND product_name LIKE CONCAT('%', #{productName}, '%')
             </if>
@@ -31,7 +36,7 @@
                 AND product_color = #{productColor}
             </if>
     </select>
-    <!--findProductByInput-->
+    <!--insertProductByInput-->
     <insert id="insertProduct" parameterType="com.example.springboot.entity.Product">
         INSERT INTO product
         (product_name, product_description, product_price, product_num, product_image, product_status, product_categories, product_color)
