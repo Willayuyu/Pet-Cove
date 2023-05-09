@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springboot.mapper.CartMapper">
+    <resultMap id="CartEntityMap" type="com.example.springboot.entity.Cart">
+        <id column="cart_id" property="cartId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="product_id" property="productId"/>
+        <result column="product_Name" property="productName"/>
+        <result column="product_price" property="productPrice"/>
+        <result column="product_quantity" property="productQuantity"/>
+        <result column="product_image" property="productImage"/>
+    </resultMap>
+    <!--addProductToCart-->
+    <insert id="addProductToCart" parameterType="com.example.springboot.entity.Cart">
+        INSERT INTO cart
+        (user_id, user_name, product_id, product_Name, product_price, product_quantity, product_image)
+        VALUES
+        (#{userId}, #{userName}, #{productId}, #{productName}, #{productPrice}, #{productQuantity}, #{productImage})
+    </insert>
+
+</mapper>
