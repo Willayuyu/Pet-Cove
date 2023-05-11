@@ -19,7 +19,7 @@ public class Product implements Serializable {
     @TableField("product_description")
     private String productDescription;
     @TableField("product_price")
-    private Long productPrice;
+    private Float productPrice;
     @TableField("product_num")
     private Integer productNum;
     @TableField("product_image")
@@ -32,10 +32,10 @@ public class Product implements Serializable {
     @TableField("product_color")
     private String productColor;
 
-    @TableField("minPrice")
-    private Long minPrice;
-    @TableField("maxPrice")
-    private Long maxPrice;
+//    @TableField("minPrice")
+//    private Long minPrice;
+//    @TableField("maxPrice")
+//    private Long maxPrice;
 
 
 }

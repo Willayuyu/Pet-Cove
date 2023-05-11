@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -30,9 +31,11 @@ public class OrderDetails {
 //    @TableField("payment_id")
 //    private String paymentId;
 
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @TableField(value = "created_date")
     private Date createdDate;
 
+//    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     @TableField(value = "created_time")
     private Date createdTime;
 

@@ -13,6 +13,7 @@ import com.example.springboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,16 +61,21 @@ public class OrderItemImpl extends ServiceImpl<OrderItemMapper, OrderItem> imple
           ]
           */
         QueryWrapper<OrderItem> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("orderId", orderId);
+        queryWrapper.eq("order_id", orderId);
         List<OrderItem> orderItems = orderItemService.list(queryWrapper);
+        List<JSONObject> jsonList = new ArrayList<>();
         for (OrderItem item : orderItems){
             Product product = productService.getById(item.getProductId());
             JSONObject json = new JSONObject();
             json.put("name", product.getProductName());
             json.put("price", product.getProductPrice());
-            
+            json.put("count", item.getCount());
+            json.put("total", product.getProductPrice() * item.getCount());
+            jsonList.add(json);
+
+
         }
 
-        return null;
+        return jsonList;
     }
 }

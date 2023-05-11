@@ -7,11 +7,16 @@ import com.example.springboot.entity.OrderDetails;
 import com.example.springboot.entity.User;
 import com.example.springboot.mapper.OrderDetailsMapper;
 import com.example.springboot.service.OrderDetailsService;
+import com.example.springboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.sql.Time;
+//import java.sql.Date;
+//import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,6 +24,9 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
 
     @Autowired
     private OrderDetailsService orderDetailsService;
+
+    @Autowired
+    private ProductService productService;
 
     @Override
     public int createOrderDetails(CheckoutInfo info) {
@@ -38,19 +46,21 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
 
         float cost = 0;
         for(int i = 0; i < productIds.size(); i++){
-//            float price = productService.getById(productIds.get(i));
-//            cost += 0;
+            float price = productService.getById(productIds.get(i)).getProductPrice();
+            cost += price;
         }
 
 
         orderDetails.setCost(cost);
 
         // record date and time
-        java.util.Date date = new java.util.Date();
-        Date sqlDate = new java.sql.Date(date.getTime());
-        Time sqlTime = new java.sql.Time(date.getTime());
-        orderDetails.setCreatedDate(sqlDate);
-        orderDetails.setCreatedTime(sqlTime);
+        Date date = new Date();
+//        Date sqlDate = new java.sql.Date(date.getTime());
+//        Time sqlTime = new java.sql.Time(date.getTime());
+//        orderDetails.setCreatedDate(sqlDate);
+//        orderDetails.setCreatedTime(sqlTime);
+        orderDetails.setCreatedDate(date);
+        orderDetails.setCreatedTime(date);
         orderDetailsService.save(orderDetails);
 
         return orderDetails.getId();
@@ -62,11 +72,23 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
 
         QueryWrapper<OrderDetails> queryWrapper = new QueryWrapper<>();
         if (isBuyer){
-            queryWrapper.eq("buyerId", userId);
+            queryWrapper.eq("buyer_id", userId);
         }else {
-            queryWrapper.eq("sellerId", userId);
+            queryWrapper.eq("seller_id", userId);
         }
         List<OrderDetails> orderList = orderDetailsService.list(queryWrapper);
+
+//        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+//        for (OrderDetails orderDetails : orderList) {
+//            Date createdDate = orderDetails.getCreatedDate();
+//            Date formattedDate = null;
+//            try {
+//                formattedDate = outputFormat.parse(createdDate.toString());
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//            orderDetails.setCreatedDate(formattedDate);
+//        }
         return orderList;
     }
 }

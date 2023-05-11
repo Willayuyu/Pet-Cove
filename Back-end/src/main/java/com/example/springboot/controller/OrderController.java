@@ -3,8 +3,10 @@ package com.example.springboot.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.springboot.entity.CheckoutInfo;
 import com.example.springboot.entity.OrderDetails;
+import com.example.springboot.entity.User;
 import com.example.springboot.service.OrderDetailsService;
 import com.example.springboot.service.OrderItemService;
+import com.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ public class OrderController {
 
     @Autowired
     private OrderItemService orderItemService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/Checkout")
     public int Checkout(@RequestBody CheckoutInfo checkoutInfo){
@@ -38,28 +43,22 @@ public class OrderController {
         return orderList;
     }
 
-    @PostMapping("/BuyerGetOneOrder")
-    public JSONObject BuyerGetOneOrder(@RequestParam int buyerId, @RequestParam int orderId){
+    @PostMapping("/GetOneOrder")
+    public JSONObject BuyerGetOneOrder(@RequestParam int orderId){
         JSONObject json = new JSONObject();
-        OrderDetails orderDetails = orderDetailsService.getById(orderId);
+
 //        json.put("buyerName", "buyer");
 
+        OrderDetails orderDetails = orderDetailsService.getById(orderId);
         json.put("orderDetails", orderDetails);
+        int buyerId = orderDetails.getBuyerId();
+        User buyer = userService.getUserById(buyerId);
+        json.put("buyerName", buyer.getUsername());
         List<JSONObject> items = orderItemService.getItemsFromOrder(orderId);
         json.put("products", items);
         return json;
     }
 
-//    @PostMapping("/SellerGetOneOrder")
-//    public JSONObject SellerGetOneOrder(@RequestParam int sellerId, @RequestParam int orderId){
-//        JSONObject json = new JSONObject();
-//        OrderDetails orderDetails = new OrderDetails();
-////        json.put("buyerName", "buyer");
-//        json.put("orderDetails", orderDetails);
-//        List<JSONObject> items = orderItemService.getItemsFromOrder(orderId);
-//        json.put("products", items);
-//        return json;
-//    }
 
     @PostMapping("/BuyerCancelOrder")
     public int CancelOrder(@RequestParam int orderId){
