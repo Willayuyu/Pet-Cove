@@ -13,6 +13,7 @@ spring:
     username: root
     password: alibabaRoot
 
+
 logging:
   level:
     root: warn
