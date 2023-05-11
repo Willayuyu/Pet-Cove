@@ -1,6 +1,9 @@
 package com.example.springboot.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.springboot.entity.OrderItem;
 import com.example.springboot.entity.Product;
+import com.example.springboot.mapper.OrderItemMapper;
 import com.example.springboot.mapper.ProductMapper;
 import com.example.springboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
     @Autowired
     ProductMapper productMapper;
 

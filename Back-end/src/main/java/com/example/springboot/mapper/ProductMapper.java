@@ -1,5 +1,6 @@
 package com.example.springboot.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.springboot.entity.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 @Mapper
 @Repository
-public interface ProductMapper {
+public interface ProductMapper extends BaseMapper<Product> {
     /**
      * find all product
      * @return

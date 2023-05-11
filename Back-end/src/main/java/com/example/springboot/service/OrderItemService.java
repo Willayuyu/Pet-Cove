@@ -17,8 +17,8 @@ public interface OrderItemService extends IService<OrderItem> {
 
     /**
     * [
-     * {name: xx, link: xx, price: xx, count: xx, total: xx},
-     * {name: xx, link: xx, price: xx, count: xx, total: xx},
+     * {name: xx, price: xx, count: xx, total: xx},
+     * {name: xx, price: xx, count: xx, total: xx},
      * ]
     * */
     public List<JSONObject> getItemsFromOrder(int orderId);

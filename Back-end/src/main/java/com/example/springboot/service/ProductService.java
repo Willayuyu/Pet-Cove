@@ -1,14 +1,16 @@
 package com.example.springboot.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.springboot.entity.Product;
 import com.example.springboot.mapper.ProductMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-
-public interface ProductService {
+@Component(value = "productService")
+public interface ProductService extends IService<Product> {
     /**
      * find all product
      * @return

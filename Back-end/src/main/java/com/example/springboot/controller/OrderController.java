@@ -41,8 +41,9 @@ public class OrderController {
     @PostMapping("/BuyerGetOneOrder")
     public JSONObject BuyerGetOneOrder(@RequestParam int buyerId, @RequestParam int orderId){
         JSONObject json = new JSONObject();
-        OrderDetails orderDetails = new OrderDetails();
+        OrderDetails orderDetails = orderDetailsService.getById(orderId);
 //        json.put("buyerName", "buyer");
+
         json.put("orderDetails", orderDetails);
         List<JSONObject> items = orderItemService.getItemsFromOrder(orderId);
         json.put("products", items);
