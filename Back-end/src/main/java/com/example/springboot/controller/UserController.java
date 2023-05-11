@@ -50,5 +50,17 @@ public class UserController {
         return user;
     }
 
+    @PostMapping("/Register")
+    public User Register(@RequestBody User user){
+        userService.addUser(user);
+        return user;
+    }
+
+    @PostMapping("/UpdateProfile")
+    public int UpdateProfile(@RequestBody User user){
+        int state = userService.updateProfile(user);
+        return state;
+    }
+
 
 }
