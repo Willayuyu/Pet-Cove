@@ -8,26 +8,31 @@
         <result column="product_price" property="productPrice"/>
         <result column="product_num" property="productNum"/>
         <result column="product_image" property="productImage"/>
-        <result column="product_status" property="productStatus"/>
         <result column="product_categories" property="productCategories"/>
         <result column="product_color" property="productColor"/>
         <result column="minPrice" property="minPrice"/>
         <result column="maxPrice" property="maxPrice"/>
+        <result column="seller_id" property="sellerId"/>
     </resultMap>
 
-    <!--findAllProduct-->
+    <!--findAllProductForBuyer-->
     <select id="findAllProduct" resultMap="ProductEntityMap">
-        SELECT * FROM product WHERE product_status=1
+        SELECT * FROM product
+    </select>
+    <!--findAllProductForSeller-->
+    <select id="findAllProductForSeller" resultMap="ProductEntityMap">
+        SELECT * FROM product
+        WHERE 1=1
+        <if test="sellerId != null and sellerId != ''">
+            AND seller_id = #{sellerId}
+        </if>
     </select>
     <!--findProductByInput-->
     <select id="findProductByInput" resultMap="ProductEntityMap">
         SELECT * FROM product
-        WHERE product_status=1
-            <if test="minPrice != null and maxPrice != null">
-                AND product_price BETWEEN #{minPrice} AND #{maxPrice}
-            </if>
+        WHERE 1=1
             <if test="productName != null and productName != ''">
-                AND product_name LIKE CONCAT('%', #{productName}, '%')
+                AND product_name = #{productName}
             </if>
             <if test="productCategories != null and productCategories != ''">
                 AND product_categories = #{productCategories}
@@ -35,20 +40,25 @@
             <if test="productColor != null and productColor != ''">
                 AND product_color = #{productColor}
             </if>
+            <if test="minPrice != null and minPrice != ''">
+                AND product_price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null and maxPrice != ''">
+                AND product_price &lt;= #{maxPrice}
+            </if>
     </select>
     <!--insertProductByInput-->
     <insert id="insertProduct" parameterType="com.example.springboot.entity.Product">
         INSERT INTO product
-        (product_name, product_description, product_price, product_num, product_image, product_status, product_categories, product_color)
+        (product_name, product_description, product_price, product_num, product_image, product_categories, product_color,seller_id)
         VALUES
-        (#{productName}, #{productDescription}, #{productPrice}, #{productNum}, #{productImage}, #{productStatus}, #{productCategories}, #{productColor})
+        (#{productName}, #{productDescription}, #{productPrice}, #{productNum}, #{productImage}, #{productCategories}, #{productColor},#{sellerId})
     </insert>
     <!-- deleteProductById -->
-    <update id="deleteProductById" parameterType="java.lang.Integer">
-        UPDATE product
-        SET product_status = 2
-        WHERE product_id = #{productId} AND product_status = 1
-    </update>
+    <delete id="deleteProductById" parameterType="java.lang.Integer">
+        DELETE FROM product
+        WHERE product_id = #{productId}
+    </delete>
 
     <!-- updateProductById -->
     <update id="updateProductById" parameterType="com.example.springboot.entity.Product">
@@ -59,7 +69,6 @@
         product_price = #{productPrice},
         product_num = #{productNum},
         product_image = #{productImage},
-        product_status = #{productStatus},
         product_categories = #{productCategories},
         product_color = #{productColor}
         WHERE

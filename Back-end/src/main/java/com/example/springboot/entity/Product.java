@@ -24,18 +24,20 @@ public class Product implements Serializable {
     private Integer productNum;
     @TableField("product_image")
     private String productImage;
-    @TableField("product_status")
-    private Integer productStatus;
 
     @TableField("product_categories")
     private String productCategories;
     @TableField("product_color")
     private String productColor;
 
-//    @TableField("minPrice")
-//    private Long minPrice;
-//    @TableField("maxPrice")
-//    private Long maxPrice;
+    @TableField("seller_id")
+    private Integer sellerId;
+
+
+
+    private Float minPrice;
+
+    private Float maxPrice;
 
 
 }

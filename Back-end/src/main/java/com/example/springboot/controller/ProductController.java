@@ -27,6 +27,17 @@ public class ProductController {
         return list;
     }
 
+    /**
+     * findAllProductForSeller
+     * @param
+     * @return
+     */
+    @GetMapping("/findAllProductForSeller")
+    public List<Product> findAllProductForSeller(@RequestParam(value = "sellerId", required = false) Integer sellerId){
+        List<Product> list1 = productService.findAllProductForSeller(sellerId);
+        return list1;
+    }
+
 
     /**
      * findProductByInput
@@ -37,12 +48,12 @@ public class ProductController {
      * @param maxPrice
      * @return
      */
-    @RequestMapping("/findProductByInput")
+    @GetMapping("/findProductByInput")
     public List<Product> findProductByInput(@RequestParam(value = "productName", required = false) String productName,
                                             @RequestParam(value = "productCategories", required = false) String productCategories,
                                             @RequestParam(value = "productColor", required = false) String productColor,
-                                            @RequestParam(value = "minPrice", required = false) Long minPrice,
-                                            @RequestParam(value = "maxPrice", required = false) Long maxPrice){
+                                            @RequestParam(value = "minPrice", required = false) Float minPrice,
+                                            @RequestParam(value = "maxPrice", required = false) Float maxPrice){
         Map<String, Object> params = new HashMap<>();
         params.put("productName", productName);
         params.put("productCategories", productCategories);

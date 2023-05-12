@@ -28,6 +28,18 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     /**
+     * findAllProductForSeller
+     * @param sellerId
+     * @return
+     */
+    @Override
+    public List<Product> findAllProductForSeller(Integer sellerId) {
+        List<Product> list1 = productMapper.findAllProductForSeller(sellerId);
+        return list1;
+    }
+
+
+    /**
      * findProductByInput
      * @param params
      * @return
