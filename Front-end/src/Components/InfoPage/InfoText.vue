@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="more info d-flex justify-content-between text-center" >
-        <div class="col4 flex-fill" v-for="(info, index) in moreInfo" :class="[index === active ? 'col4 active' : '']" @click="moreInfoSelect(index)" :key="info.id">
-              <h6>{{ info }}</h6>
+        <div class="col4 flex-fill" >
+              <h6>{{ product.productDescription}}</h6>
         </div>
     </div>
     <div class="container pt-3">
@@ -16,17 +16,6 @@
 <script>
 export default {
   name: 'InfoText',
-  data() {
-    return {
-      moreInfo: ['DESCRIPTION', 'WARRANTY', 'REVIEWS'],
-      active: 0,
-    }
-  },
-  methods: {
-    moreInfoSelect(index) { //More Info area tab selector
-      return this.active = index
-    },
-  }
 }
 </script>
 

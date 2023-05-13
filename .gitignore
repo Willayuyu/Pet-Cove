@@ -9,6 +9,7 @@ yarn-error.log*
 selenium-debug.log
 .history
 
+
 # Editor directories and files
 .idea
 .vscode

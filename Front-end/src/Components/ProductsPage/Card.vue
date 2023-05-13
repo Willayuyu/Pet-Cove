@@ -1,38 +1,91 @@
 <template>
   <div>
     <transition-group name="fade" class="row" tag="div">
-      <div v-for="item in CardArray" class="col-6 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-4 pb-3" :key="item.id">
-          <div class="card">
-            <img class="card-img-top" :src="item.img" alt="Card image cap">
-            <div class="overlay">
-              <button type="button" class="btn btn-outline-secondary btn-lg" @click="addtoCart(item)">Add +</button>
-              <router-link to="/Info"><button type="button" class="btn btn-outline-secondary btn-lg" @click="sendInfo(item)">Info</button></router-link>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text">${{ item.price }}</p>
-            </div>
+      <div
+        v-for="item in CardArray"
+        class="col-6 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-4 pb-3"
+        :key="item.productId"
+      >
+        <div class="card">
+          <img
+            class="card-img-top"
+            :src="item.productImage"
+            alt="Card image cap"
+          />
+          <div class="overlay">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-lg"
+              @click="addToCart(item)"
+            >
+              Add +
+            </button>
+            <router-link
+              :to="{ name: 'Info', params: { productId: item.productId } }"
+              ><button type="button" class="btn btn-outline-secondary btn-lg">
+                Info
+              </button></router-link
+            >
           </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.productName }}</h5>
+            <p class="card-text">${{ item.productPrice }}</p>
+          </div>
+        </div>
       </div>
     </transition-group>
   </div>
-
 </template>
 
 <script>
+/* eslint-disable */
+import axios from "axios";
+
 export default {
-  props: ['CardArray'],
-  name: 'Card',
+  data() {
+    return {
+      CardArray: [],
+    };
+  },
+  mounted() {
+    this.getAllProduct();
+  },
   methods: {
-    addtoCart(it) {
-     this.$store.commit('inCart', it)
+    getAllProduct() {
+      axios
+        .get("/api/product/getAllProducts")
+        .then((response) => {
+          this.CardArray = response.data;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    sendInfo(it) {
-     this.$store.commit('addtoInfo', it)
-    }
-  }
-}
-</script>
+    addToCart(item) {
+      // make a post request to add the product to the cart
+      const requestData = {
+        userId: item.userId, 
+        userName: item.userName, 
+        productId: item.productId,
+        productName: item.productName,
+        productPrice: item.productPrice,
+        productQuantity: 1,
+        productImage: item.productImage,
+      };
+      axios
+        .post("/api/cart/addProductToCart", requestData)
+        .then((response) => {
+          console.log(response.data); // should log "Product added successfully"
+          // add some code to update the cart count in the UI
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
+</script> 
 
 <style>
 /* transition Group style */
@@ -61,7 +114,6 @@ export default {
 
 .card:hover .overlay {
   opacity: 0.8;
-
 }
 
 .card .overlay {
@@ -78,7 +130,8 @@ export default {
   transition: all 0.3s ease-in;
 }
 
-.card:hover, .card:active {
+.card:hover,
+.card:active {
   transform: scaleY(1.1) scaleX(1.06);
   box-shadow: 0 14px 98px rgba(0, 0, 0, 0.25), 0 0px 60px rgba(0, 0, 0, 0.22);
 }

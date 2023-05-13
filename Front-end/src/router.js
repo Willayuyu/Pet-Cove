@@ -32,7 +32,7 @@ export default new Router({
       component: Contact
     },
     {
-      path: '/info',
+      path: '/info/:productId',
       name: 'Info',
       component: Info
     },
