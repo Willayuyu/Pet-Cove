@@ -63,9 +63,9 @@ const isLoggedIn = this.$root.isLoggedIn;
 <script>
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080', 
-});
+// const axiosInstance = axios.create({
+//   baseURL: 'http://localhost:8080',
+// });
 
 // const express = require('express');
 // const cors = require('cors');
@@ -79,9 +79,8 @@ export default {
     return {
       username: "",
       password: "",
-      loginState: null,
       isSeller: false,
-      userId:null
+      userId: 0,
     };
   },
   methods: {
@@ -107,11 +106,13 @@ export default {
           })
           .then((response) => {
             // Handle response from API
-            this.loginState = response.data.state;
             this.userId = response.data.userId;
-            console.log(this.loginState)
-            if (this.loginState == 1) {
-              this.$store.state.isLoggedIn = true;
+            console.log(this.userId);
+            if (this.userId == -1) {
+              alert("Username doesn't exist.");
+            } else if (this.userId == 0) {
+              alert("Check your username and password.");
+            } else {
               this.$store.state.isSeller = this.isSeller;
               this.$store.state.userId = this.userId;
               if (this.isSeller) {
@@ -119,10 +120,6 @@ export default {
               } else {
                 this.$router.push("/buyerHomePage");
               }
-            } else if (this.loginState == -1) {
-              alert("Username doesn't exist.");
-            } else {
-              alert("Check your username and password.");
             }
           })
           .catch((error) => {
