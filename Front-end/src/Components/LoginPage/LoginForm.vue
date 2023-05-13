@@ -81,6 +81,7 @@ export default {
       password: "",
       loginState: null,
       isSeller: false,
+      userId:null
     };
   },
   methods: {
@@ -107,10 +108,12 @@ export default {
           .then((response) => {
             // Handle response from API
             this.loginState = response.data.state;
+            this.userId = response.data.userId;
             console.log(this.loginState)
             if (this.loginState == 1) {
               this.$store.state.isLoggedIn = true;
               this.$store.state.isSeller = this.isSeller;
+              this.$store.state.userId = this.userId;
               if (this.isSeller) {
                 this.$router.push("/sellerHomePage");
               } else {
