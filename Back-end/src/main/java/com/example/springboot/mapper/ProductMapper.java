@@ -25,6 +25,13 @@ public interface ProductMapper extends BaseMapper<Product> {
      * @return
      */
     List<Product> findAllProductForSeller(Integer sellerId);
+
+    /**
+     * findProductDetails
+     * @param productId
+     * @return
+     */
+    List<Product> findProductDetails(Integer productId);
     /**
      * findProductByInput
      */

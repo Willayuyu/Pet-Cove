@@ -25,6 +25,13 @@ public interface ProductService extends IService<Product> {
     List<Product> findAllProductForSeller(Integer sellerId);
 
     /**
+     * findProductDetails
+     * @param productId
+     * @return
+     */
+    List<Product> findProductDetails(Integer productId);
+
+    /**
      * findProductByInput
      * @param params
      * @return

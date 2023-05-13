@@ -38,6 +38,17 @@ public class ProductController {
         return list1;
     }
 
+    /**
+     * findProductDetails
+     * @param productId
+     * @return
+     */
+    @GetMapping("/findProductDetails")
+    public List<Product> findProductDetails(@RequestParam(value = "productId", required = false) Integer productId){
+        List<Product> list2 = productService.findProductDetails(productId);
+        return list2;
+    }
+
 
     /**
      * findProductByInput
