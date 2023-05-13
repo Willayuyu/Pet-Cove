@@ -35,9 +35,9 @@ public class Product implements Serializable {
 
 
 
-    private Float minPrice;
-
-    private Float maxPrice;
+//    private Float minPrice;
+//
+//    private Float maxPrice;
 
 
 }

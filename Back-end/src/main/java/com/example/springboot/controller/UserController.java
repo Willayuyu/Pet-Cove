@@ -2,6 +2,7 @@ package com.example.springboot.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.springboot.entity.User;
 import com.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,14 @@ public class UserController {
     }
 
     @PostMapping("/Register")
-    public User Register(@RequestBody User user){
-        userService.addUser(user);
-        return user;
+    public int Register(@RequestBody User user){
+        if (userService.getUserByName(user.getUsername()) == null){
+            userService.addUser(user);
+            return user.getUserId();
+        }
+        else{
+            return -1;
+        }
     }
 
     @PostMapping("/UpdateProfile")

@@ -33,11 +33,11 @@ public class OrderDetails {
 
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @TableField(value = "created_date")
-    private Date createdDate;
+    private String createdDate;
 
 //    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     @TableField(value = "created_time")
-    private Date createdTime;
+    private String createdTime;
 
     /**
      * "Pending Shipment"

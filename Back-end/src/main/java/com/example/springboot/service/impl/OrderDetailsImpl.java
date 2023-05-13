@@ -55,12 +55,15 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
 
         // record date and time
         Date date = new Date();
-//        Date sqlDate = new java.sql.Date(date.getTime());
-//        Time sqlTime = new java.sql.Time(date.getTime());
-//        orderDetails.setCreatedDate(sqlDate);
-//        orderDetails.setCreatedTime(sqlTime);
-        orderDetails.setCreatedDate(date);
-        orderDetails.setCreatedTime(date);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat timeFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+        String createdDate = dateFormat.format(date);
+        String createdTime = timeFormat.format(date);
+
+        orderDetails.setCreatedDate(createdDate);
+        orderDetails.setCreatedTime(createdTime);
         orderDetailsService.save(orderDetails);
 
         return orderDetails.getId();
@@ -77,18 +80,6 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
             queryWrapper.eq("seller_id", userId);
         }
         List<OrderDetails> orderList = orderDetailsService.list(queryWrapper);
-
-//        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        for (OrderDetails orderDetails : orderList) {
-//            Date createdDate = orderDetails.getCreatedDate();
-//            Date formattedDate = null;
-//            try {
-//                formattedDate = outputFormat.parse(createdDate.toString());
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//            orderDetails.setCreatedDate(formattedDate);
-//        }
         return orderList;
     }
 }
