@@ -53,11 +53,16 @@ public class CartController {
 
     /**
      * updateCartItemQuantity
-     * @param cart
+     * @param cartId
+     * @param productQuantity
      * @return
      */
     @PutMapping("/updateCartItemQuantity")
-    public ResponseEntity<String> updateCartItemQuantity(@RequestBody Cart cart) {
+    public ResponseEntity<String> updateCartItemQuantity(@RequestParam("cartId") Integer cartId,
+                                                         @RequestParam("productQuantity") Integer productQuantity) {
+        Cart cart = new Cart();
+        cart.setCartId(cartId);
+        cart.setProductQuantity(productQuantity);
         int rowsAffected = cartService.updateCartItemQuantity(cart);
         if (rowsAffected > 0) {
             return ResponseEntity.ok("Item quantity updated successfully.");
