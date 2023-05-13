@@ -72,7 +72,7 @@ const axiosInstance = axios.create({
 // const app = express();
 
 // app.use(cors())
-
+/* eslint-disable */
 
 export default {
   data() {
