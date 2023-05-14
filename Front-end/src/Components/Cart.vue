@@ -105,7 +105,7 @@ export default {
       axios
         .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           this.cartPrice = response.data;
         })
         .catch((error) => {
@@ -147,21 +147,12 @@ export default {
         });
     },
     checkout() {
-      // make an API call to create an order using the cart items
-      axios
-        .post("/api/order/createOrder", {
-          userId: this.userId,
-          cartId: this.cartId,
-          items: this.cartContent,
-          total: this.cartPrice,
-        })
-        .then((response) => {
-          // redirect to the order confirmation page
-          this.$router.push({ path: `/order/${response.data.orderId}` });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      if (this.$store.state.isLogin){
+        this.$router.push("/Checkout");
+      } else {
+        alert("Please login first.")
+      }
+      
     },
     cartON() {
       if (this.cClass === "cart on") {

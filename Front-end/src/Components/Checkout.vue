@@ -9,11 +9,11 @@
             <p>Logged in as {{ username }}</p>
             <h3>Order Summary:</h3>
             <ul>
-                <li v-for="(item, index) in items" :key="index">
-                    {{ item.name }} - ${{ item.price }}
+                <li v-for="item in items" :key="item.productId">
+                    {{ item.productName }} - {{ item.productQuantity }} * ${{ item.productPrice }}
                 </li>
             </ul>
-            <p>Total: ${{ totalPrice }}</p>
+            <p>Total: ${{ cartPrice}}</p>
             <h3>Select Payment Method:</h3>
             <div>
                 <input type="radio" id="credit-card" name="payment-method" value="credit-card"
@@ -46,41 +46,83 @@
 <script>
 /* eslint-disable */
 import { Script } from "vm";
+import axios from "axios";
 
 export default {
     data() {
         return {
-            isLoggedIn: this.$store.state.isLoggedIn,
-            username: "",
-            items: [
-                { name: "Item 1", price: 10 },
-                { name: "Item 2", price: 20 },
-                { name: "Item 3", price: 30 },
-            ],
+            isLoggedIn: this.$store.state.isLogin,
+            username: this.$store.state.username,
+            items: [],
             selectedPaymentMethod: "credit-card",
             cardNumber: "",
             expiryDate: "",
             cvv: "",
             paypalEmail: "",
+            cartPrice: 0,
+            productIdList: [],
         };
     },
-    computed: {
-        totalPrice() {
-            return this.items.reduce((total, item) => total + item.price, 0);
-        },
+    mounted() {
+     this.fetchCartContent();
     },
+    
+    // computed: {
+    //     totalPrice() {
+    //         return this.items.reduce((total, item) => total + item.price, 0);
+    //     },
+    // },
     methods: {
+        fetchCartContent() {
+            axios
+                .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
+                .then((response) => {
+                this.items = response.data;
+                this.calculateCartPrice();
+                })
+                .catch((error) => {
+                console.error(error);
+                });
+            },
+        calculateCartPrice() {
+            axios
+                .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
+                .then((response) => {
+                // console.log(response.data)
+                this.cartPrice = response.data;
+                })
+                .catch((error) => {
+                console.error(error);
+                });
+            },
         login() {
             this.$router.push('/login');
         },
         processPayment() {
-            if (this.selectedPaymentMethod === "credit-card") {
-                // implement credit card payment processing here
-                /* eslint-disable */
-                console.log("Processing credit card payment...");
-            } else if (this.selectedPaymentMethod === "paypal") {
-                // implement PayPal payment processing here
+            // if (this.selectedPaymentMethod === "credit-card") {
+            //     // implement credit card payment processing here
+            //     /* eslint-disable */
+            //     console.log("Processing credit card payment...");
+            // } else if (this.selectedPaymentMethod === "paypal") {
+            //     // implement PayPal payment processing here
+            // }
+            // make an API call to create an order using the cart items
+            for (let i = 0; i < this.items.length; i++){
+                this.productIdList.push(this.items[i].productId);
             }
+            axios
+                .post("/api/order/Checkout", {
+                buyerId: this.userId,
+                products: this.productIdList,
+                shippingAddress: this.$store.state.address,
+                })
+                .then((response) => {
+                // redirect to the order confirmation page
+                this.$router.push("/orderPage");
+                })
+                .catch((error) => {
+                console.error(error);
+                });
         },
     },
 };

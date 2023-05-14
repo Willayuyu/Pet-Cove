@@ -19,8 +19,8 @@ public class OrderDetails {
     @TableField("buyer_id")
     private int buyerId;
 
-    @TableField("seller_id")
-    private int sellerId;
+//    @TableField("seller_id")
+//    private int sellerId;
 
     @TableField("cost")
     private float cost;

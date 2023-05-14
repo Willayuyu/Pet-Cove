@@ -32,12 +32,12 @@ public class OrderDetailsImpl extends ServiceImpl<OrderDetailsMapper, OrderDetai
     public int createOrderDetails(CheckoutInfo info) {
 
         int buyerId = info.getBuyerId();
-        int sellerId = info.getSellerId();
+//        int sellerId = info.getSellerId();
         String shippingAddress = info.getShippingAddress();
 
         OrderDetails orderDetails = new OrderDetails();
         orderDetails.setBuyerId(buyerId);
-        orderDetails.setSellerId(sellerId);
+//        orderDetails.setSellerId(sellerId);
         orderDetails.setShippingAddress(shippingAddress);
 //        orderDetails.setStatus("Pending Shipment");
 
