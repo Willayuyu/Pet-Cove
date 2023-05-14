@@ -100,7 +100,7 @@ export default {
       if (isValid) {
         // Send username and password to the backend API
         axios
-          .post("/Login", {
+          .post("/user/Login", {
             username: this.username,
             password: this.password,
           })
