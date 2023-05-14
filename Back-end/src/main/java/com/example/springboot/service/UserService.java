@@ -1,12 +1,8 @@
 package com.example.springboot.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.springboot.entity.User;
 import org.springframework.stereotype.Component;
-
-import java.math.BigInteger;
-import java.util.List;
 
 @Component (value = "userService")
 public interface UserService extends IService<User> {
@@ -27,9 +23,9 @@ public interface UserService extends IService<User> {
     public boolean checkPassword(String name, String password);
 
     /**
-     *add user data
+     *register new user data
      **/
-    public void addUser(JSONObject userJson);
+    public void addUser(User newUser);
 
 
     /**
@@ -42,5 +38,9 @@ public interface UserService extends IService<User> {
      *logout
      **/
     public void logout(long Id);
+
+    //update
+    public int updateProfile(User user);
+
 
 }

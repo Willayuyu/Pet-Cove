@@ -9,6 +9,7 @@ import com.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -45,15 +46,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void addUser(JSONObject userJson){
-        User user = new User();
-        user.setUsername(userJson.getString("name"));
-        user.setPassword(userJson.getString("password"));
-        user.setPhone(userJson.getString("phone"));
-        user.setEmail(userJson.getString("email"));
-        user.setAddress(userJson.getString("address"));
-        user.setFlag(userJson.getInteger("flag"));
-        userService.save(user);
+    public void addUser(User newUser){
+//        User user = new User();
+//        user.setUsername(userJson.getString("name"));
+//        user.setPassword(userJson.getString("password"));
+//        user.setPhone(userJson.getString("phone"));
+//        user.setEmail(userJson.getString("email"));
+//        user.setAddress(userJson.getString("address"));
+//        user.setFlag(userJson.getInteger("flag"));
+        userService.save(newUser);
     }
 
 
@@ -76,6 +77,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public void logout(long Id) {
 
+    }
+
+    @Override
+    public int updateProfile(User user) {
+        User oldUser = userService.getUserByName(user.getUsername());
+        int id = oldUser.getUserId();
+        user.setUserId(id);
+        userService.updateById(user);
+        return 1;
     }
 
 

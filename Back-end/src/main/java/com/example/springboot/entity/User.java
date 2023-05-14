@@ -12,7 +12,7 @@ import java.math.BigInteger;
 public class User {
 
     @TableId(value = "user_id",type = IdType.AUTO)
-    private BigInteger userId;
+    private int userId;
 
     @TableField("user_name")
     private String username;
