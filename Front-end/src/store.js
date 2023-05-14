@@ -131,6 +131,16 @@ export default new Vuex.Store(
       }
     ]
   },
+  user: {
+      username: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      flag: 0,
+      address: ""
+  },
   // methods: {
   //   resetState(){
   //     state.infoPage = [],

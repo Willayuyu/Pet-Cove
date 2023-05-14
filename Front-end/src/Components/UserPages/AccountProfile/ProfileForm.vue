@@ -2,7 +2,7 @@
     <div class="container my-2">
         <b-form ref="form" @submit="onSubmit" @reset="onReset" v-if="loadedData">
             <b-form-group id="uname-group" label="Username:" label-for="uname">
-                <b-form-input id="uname" v-model="form.username" type="text" placeholder="Enter username"
+                <b-form-input id="uname" v-model="form.username" type="text" placeholder="Enter username" disabled
                     required></b-form-input>
             </b-form-group>
 
@@ -84,6 +84,7 @@ export default {
             })
             .then((response) => {
                 this.profile = response.data; // 将响应数据保存在组件中
+                
                 this.form.username = this.profile.username;
                 this.form.first_name = this.profile.firstName;
                 this.form.last_name = this.profile.lastName;
@@ -92,6 +93,14 @@ export default {
                 this.form.address = this.profile.address;
                 this.form.flag = this.profile.flag;
                 this.loadedData = true;
+
+                // this.$store.user.username = this.profile.username;
+                // this.$store.user.firstName = this.profile.firstName;
+                // this.$store.user.lastName = this.profile.lastName;
+                // this.$store.user.email = this.profile.email;
+                // this.$store.user.phone = this.profile.phone;
+                // this.$store.user.address = this.profile.address;
+                // this.$store.user.flag = this.profile.flag;
             })
             .catch((error) => {
                 console.log(error);
@@ -126,7 +135,7 @@ export default {
             event.preventDefault();
             // Reset our form values
             this.form.email = "";
-            this.form.username = "";
+            // this.form.username = "";
             this.form.first_name = "";
             this.form.last_name = "";
             this.form.address = "";
@@ -145,6 +154,14 @@ export default {
             this.$store.state.username = "",
             this.$store.state.userAvatar = ''
             this.$store.state.isLogin = false;
+            // this.$store.user.username = "",
+            // this.$store.user.password = "",
+            // this.$store.user.firstName = "",
+            // this.$store.user.lastName = "",
+            // this.$store.user.email = "",
+            // this.$store.user.phone = "",
+            // this.$store.user.flag = 0,
+            // this.$store.user.address = ""
             this.$router.push("/");
         },
     },
