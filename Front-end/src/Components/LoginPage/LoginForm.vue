@@ -119,6 +119,7 @@ export default {
               this.$store.state.isSeller = this.isSeller;
               this.$store.state.userId = this.userId;
               this.$store.state.username = this.username;
+              this.$store.state.isLogin = true
               if (this.isSeller) {
                 this.$router.push("/sellerHomePage");
               } else {

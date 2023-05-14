@@ -37,10 +37,10 @@
       </p>
       <section class="loginSection">
         <!-- If the user is logged in, show the avatar instead of the links -->
-        <div v-if="this.$store.state.isLoggedIn">
+        <div v-if="this.$store.state.userId">
           <img
             :src="
-              typeof userAvatar === 'string' ? userAvatar : '../assets/OIP.jpg'
+              typeof userAvatar === 'string' ? userAvatar : 'https://th.bing.com/th/id/R.d746886dc5e35200f8d7177bbc5c4e43?rik=ziow3mtRqs7NSw&riu=http%3a%2f%2fbpic.588ku.com%2felement_pic%2f01%2f36%2f85%2f79573c2cd52b562.jpg&ehk=pw6SL860UEgxqLmvysCx5BazduriAnZfxM28Wyed0xA%3d&risl=&pid=ImgRaw&r=0'
             "
             class="avatar"
             @click="getProfile"
@@ -116,18 +116,16 @@
       </div>
     </div>
     <!--Cart Component-->
-    <Cart ref="cartMove" />
+    <Cart ref="cartMove"/>
   </div>
 </template>
 
 <script>
 import Cart from "@/Components/Cart.vue";
-
 export default {
   data() {
     return {
       isSeller: this.$store.state.isSeller,
-      userAvatar: this.$store.state.userAvatar, // replace this with the path to the user's avatar
     };
   },
   name: "Header",
@@ -142,6 +140,7 @@ export default {
   methods: {
     openCart() {
       this.$refs.cartMove.cartON();
+      
     },
     getProfile() {
       if (this.isSeller) {

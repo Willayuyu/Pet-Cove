@@ -129,6 +129,8 @@ export default {
         onLogout() {
             // this.$store.state.isLoggedIn = false;
             this.$store.methods.resetState();
+            this.$store.state.isLogin = false;
+            this.$store.state.userId = 0;
             this.$router.push("/");
         },
     },
