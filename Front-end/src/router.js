@@ -8,8 +8,8 @@ const Info = () => import('@/views/Info.vue');
 const Login = () => import('@/views/Login.vue');
 const Register = () => import('@/views/Register.vue');
 
-const SellerHomePage = () => import('@/views/Seller/SellerHomePage.vue')
-const BuyerHomePage = () => import('./Components/BuyerPage/BuyerHomePage.vue')
+const SellerHomePage = () => import('./Components/UserPages/SellerHomePage.vue')
+const BuyerHomePage = () => import('./Components/UserPages/BuyerHomePage.vue')
 const TestPage = () => import('@/views/Test/TestPage.vue')
 const Checkout =()=>import('./Components/Checkout.vue')
 

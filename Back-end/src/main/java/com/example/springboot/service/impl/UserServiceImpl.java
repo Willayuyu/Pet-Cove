@@ -67,14 +67,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         // if isSeller is the same as flag
 
+        if(user == null) {
+            return -1;
+        }
+
         if ((user.getFlag() == 1) ==isSeller){
-            if(user == null) {
-                return -1;
-            }
-            else {
-                boolean pass = userService.checkPassword(name, password);
-                return pass ? user.getUserId() : 0;
-            }
+            boolean pass = userService.checkPassword(name, password);
+            return pass ? user.getUserId() : 0;
         }
         else {
             return -1;

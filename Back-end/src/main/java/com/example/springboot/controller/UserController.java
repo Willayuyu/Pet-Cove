@@ -47,7 +47,7 @@ public class UserController {
 //        System.out.printf("%s %s%n", username, password);
 //        boolean isSeller = true;
         int state =  userService.login(username, password, isSeller);
-        System.out.println(state);
+//        System.out.println(state);
         return state;
 
     }

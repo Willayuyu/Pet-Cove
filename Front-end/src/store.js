@@ -5,7 +5,8 @@ import createPersistedState from 'vuex-persistedstate';
 // REMOVE CLASS FROM items ARRAY
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default new Vuex.Store(
+  {
   state: {
     infoPage:[],
     cartItems:[],
