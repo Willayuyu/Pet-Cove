@@ -79,9 +79,11 @@ export default {
       cartPrice: 0,
       cClass: "cart",
       modalClass: "model off",
-      cartId: null,
-      userId: null,
-      userName: null,
+      cartId: '',
+      userId: '',
+      userName:'',
+      productId:''
+      
     };
   },
   mounted() {
@@ -90,7 +92,7 @@ export default {
   methods: {
     fetchCartContent() {
       axios
-        .get(`/api/cart/getAllCartItems?userId=${this.userId}`)
+        .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
         .then((response) => {
           this.cartContent = response.data;
           this.cartId = response.data.cartId;
@@ -104,7 +106,7 @@ export default {
     },
     calculateCartPrice() {
       axios
-        .get(`/api/cart/totalPrice?userId=${this.userId}`)
+        .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
         .then((response) => {
           this.cartPrice = response.data.totalPrice.toFixed(2);
         })
@@ -115,7 +117,7 @@ export default {
     removeItem(productId) {
       axios
         .delete(
-          `/api/cart/deleteCartItem?cartId=${cartId}&userId=${userId}&productId=${productId}`
+          `/api/cart/deleteCartItem?cartId=${this.cartId}&userId=${this.userId}&productId=${productId}`
         )
         .then((response) => {
           if (response.data === "Item removed from cart successfully.") {
@@ -128,12 +130,12 @@ export default {
     },
     increaseQuantity(item) {
       item.productQuantity++;
-      this.updateCartItem(item);
+      this.updateCartItem(item.productQuantity);
     },
     decreaseQuantity(item) {
       if (item.productQuantity > 1) {
         item.productQuantity--;
-        this.updateCartItem(item);
+        this.updateCartItem(item.productQuantity);
       }
     },
     updateCartItem(item) {
@@ -163,7 +165,7 @@ export default {
           console.error(error);
         });
     },
-    toggleCart() {
+    cartON() {
       if (this.cClass === "cart on") {
         this.cClass = "cart";
         this.modalClass = "modal off";

@@ -110,7 +110,7 @@ export default {
             // Handle response from API
             this.userId = response.data.userId;
             
-            console.log(this.userId);
+            console.log(response.data);
             if (this.userId == -1) {
               alert("Username doesn't exist.");
             } else if (this.userId == 0) {
