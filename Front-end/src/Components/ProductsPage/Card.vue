@@ -53,7 +53,7 @@ export default {
   methods: {
     getAllProduct() {
       axios
-        .get("/api/product/getAllProducts")
+        .get("/api/product/findAllProduct")
         .then((response) => {
           this.CardArray = response.data;
           console.log(response.data);
