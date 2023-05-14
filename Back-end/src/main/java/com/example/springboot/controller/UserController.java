@@ -41,6 +41,7 @@ public class UserController {
     public int Login(@RequestBody JSONObject request){
         String username = request.getString("username");
         String password = request.getString("password");
+        System.out.println(username);
 //        String isSeller = request.getString("isSeller");
         // , @RequestParam boolean isSeller
 
