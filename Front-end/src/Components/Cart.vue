@@ -105,7 +105,8 @@ export default {
       axios
         .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
         .then((response) => {
-          this.cartPrice = response.data.totalPrice;
+          console.log(response.data)
+          this.cartPrice = response.data;
         })
         .catch((error) => {
           console.error(error);
@@ -127,17 +128,17 @@ export default {
     },
     increaseQuantity(item) {
       item.productQuantity++;
-      this.updateCartItem(item.productQuantity);
+      this.updateCartItem(item);
     },
     decreaseQuantity(item) {
       if (item.productQuantity > 1) {
         item.productQuantity--;
-        this.updateCartItem(item.productQuantity);
+        this.updateCartItem(item);
       }
     },
     updateCartItem(item) {
       axios
-        .put(`/api/cart/updateCartItem?productId=${this.productId}`, item)
+        .put(`/api/cart/updateCartItemQuantity?userId=${this.$store.state.userId}&productId=${item.productId}&productQuantity=${item.productQuantity}`)
         .then((response) => {
           this.calculateCartPrice();
         })
