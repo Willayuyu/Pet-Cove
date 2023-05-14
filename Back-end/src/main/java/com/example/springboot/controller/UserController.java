@@ -61,6 +61,7 @@ public class UserController {
 
     @PostMapping("/Register")
     public int Register(@RequestBody User user){
+//        System.out.println(user);
         if (userService.getUserByName(user.getUsername()) == null){
             userService.addUser(user);
             return user.getUserId();

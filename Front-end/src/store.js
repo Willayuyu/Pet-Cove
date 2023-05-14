@@ -131,16 +131,16 @@ export default new Vuex.Store(
       }
     ]
   },
-  methods: {
-    resetState(){
-      state.infoPage = [],
-      state.cartItems = [],
-      state.isSeller = false,
-      state.userId = 0,
-      state.username = "",
-      state.userAvatar = ''
-    },
-  },
+  // methods: {
+  //   resetState(){
+  //     state.infoPage = [],
+  //     state.cartItems = [],
+  //     state.isSeller = false,
+  //     state.userId = 0,
+  //     state.username = "",
+  //     state.userAvatar = ''
+  //   },
+  // },
   plugins: [createPersistedState()],
   getters: {
     itemsNumber(state){  // Cart Component

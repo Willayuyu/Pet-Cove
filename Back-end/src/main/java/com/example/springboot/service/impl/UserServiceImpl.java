@@ -92,6 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User oldUser = userService.getUserByName(user.getUsername());
         int id = oldUser.getUserId();
         user.setUserId(id);
+        user.setPassword(oldUser.getPassword());
         userService.updateById(user);
         return 1;
     }

@@ -21,6 +21,7 @@
             class="name"
             type="text"
             name="uname"
+            v-model="username"
             placeholder="Enter your username"
           />
 
@@ -29,6 +30,7 @@
             class="name"
             type="text"
             name="fname"
+            v-model="firstName"
             placeholder="Enter your first name"
           />
           <label class="inputLabel" for="lname">Last name</label>
@@ -36,20 +38,23 @@
             class="name"
             type="text"
             name="lname"
+            v-model="lastName"
             placeholder="Enter your last name"
           />
           <label class="inputLabel" for="email">Email</label>
           <input
             class="user"
-            type="text"
+            type="email"
             name="email"
+            v-model="email"
             placeholder="Enter your email"
           />
           <label class="inputLabel" for="tel">Telephone number</label>
           <input
             class="user"
-            type="text"
+            type="tel"
             name="tel"
+            v-model="telephone"
             placeholder="Enter your telephone number"
             required
           />
@@ -58,7 +63,16 @@
             class="password"
             type="password"
             name="password"
+            v-model="password"
             placeholder="Enter your password"
+          />
+          <label class="inputLabel" for="address">Address</label>
+          <input
+            class="user"
+            type="text"
+            name="address"
+            v-model="address"
+            placeholder="Enter your address"
           />
 
           <!-- <div class="rememberMe">
@@ -99,8 +113,9 @@
     </div>
   </section>
 </template>
-  
+
   <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -111,6 +126,7 @@ export default {
       email: "",
       telephone: "",
       password: "",
+      address: "", 
       buyerHomePage: "/buyerHomePage",
       sellerHomePage: "/sellerHomePage",
     };
@@ -130,13 +146,38 @@ export default {
       }
 
       if (isValid) {
-        this.$store.state.isLoggedIn = true;
-        this.$store.state.isSeller = this.isSeller;
-        if (this.isSeller) {
-          this.$router.push("/sellerHomePage");
-        } else {
-          this.$router.push("/buyerHomePage");
-        }
+        const user = {
+            // params:{
+              username: this.username,
+              firstName: this.firstName,
+              lastName: this.lastName,
+              email: this.email,
+              phone: this.telephone,
+              password: this.password,
+              flag: this.isSeller ? 1 : 0,
+              address: this.address,
+          // }
+          };
+        axios
+          .post("/user/Register", user)
+          .then((response) => {
+            // Handle response from API
+            this.userId = response.data;
+            if (this.userId == -1) {
+              alert("Username already exists.");
+            } else {
+              this.$store.state.isSeller = this.isSeller;
+              this.$store.state.userId = this.userId;
+              this.$store.state.username = this.username;
+              this.$store.state.isLogin = true
+              if (this.isSeller) {
+                this.$router.push("/sellerHomePage");
+              } else {
+                this.$router.push("/buyerHomePage");
+              }
+            }
+          })
+
       } else {
         // 存在空白字段，显示提示信息
         alert("Please fill in all fields.");

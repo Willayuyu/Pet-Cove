@@ -32,7 +32,7 @@
             <b-form-group id="tel-group" label="Tel number:" label-for="tel">
                 <b-input-group prepend="+41">
                     <b-form-input id="tel" v-model="form.tel" type="tel"
-                        placeholder="Enter your telephone number: xxxxxxxxx" pattern="[0-9]{9}" required></b-form-input>
+                        placeholder="Enter your telephone number" pattern="^[0-9]+$" required></b-form-input>
                 </b-input-group>
             </b-form-group>
 
@@ -100,9 +100,19 @@ export default {
     methods: {
         onSubmit(event) {
             event.preventDefault();
+            const user = {
+                    username: this.form.username,
+                    // password: this.form.,
+                    firstName: this.form.first_name,
+                    lastName: this.form.last_name,
+                    email: this.form.email,
+                    phone: this.form.tel,
+                    // flag: this.form.flag,
+                    address: this.address
+                }
             // example
             axios
-                .post("/UpdateProfile", this.form)
+                .post("/user/UpdateProfile", user)
                 .then((response) => {
                     console.log(response);
                     alert("Profile updated successfully!");
@@ -128,9 +138,13 @@ export default {
         },
         onLogout() {
             // this.$store.state.isLoggedIn = false;
-            this.$store.methods.resetState();
+            this.$store.state.infoPage = [],
+            this.$store.state.cartItems = [],
+            this.$store.state.isSeller = false,
+            this.$store.state.userId = 0,
+            this.$store.state.username = "",
+            this.$store.state.userAvatar = ''
             this.$store.state.isLogin = false;
-            this.$store.state.userId = 0;
             this.$router.push("/");
         },
     },
