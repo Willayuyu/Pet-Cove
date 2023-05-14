@@ -64,16 +64,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public int login(String name, String password, boolean isSeller){
 
         User user = userService.getUserByName(name);
-//        if (user.getFlag()==isSeller){
-//
-//        }
-        if(user == null) {
-            return -1;
+
+        // if isSeller is the same as flag
+
+        if ((user.getFlag() == 1) ==isSeller){
+            if(user == null) {
+                return -1;
+            }
+            else {
+                boolean pass = userService.checkPassword(name, password);
+                return pass ? user.getUserId() : 0;
+            }
         }
         else {
-            boolean pass = userService.checkPassword(name, password);
-            return pass ? 1 : 0;
+            return -1;
         }
+
 
     }
 

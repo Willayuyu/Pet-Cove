@@ -41,12 +41,11 @@ public class UserController {
     public int Login(@RequestBody JSONObject request){
         String username = request.getString("username");
         String password = request.getString("password");
-        System.out.println(username);
-//        String isSeller = request.getString("isSeller");
+        boolean isSeller = request.getBoolean("isSeller");
         // , @RequestParam boolean isSeller
 
 //        System.out.printf("%s %s%n", username, password);
-        boolean isSeller = true;
+//        boolean isSeller = true;
         int state =  userService.login(username, password, isSeller);
         System.out.println(state);
         return state;

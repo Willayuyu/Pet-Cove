@@ -104,13 +104,13 @@ export default {
             // params:{
               username: this.username,
               password: this.password,
+              isSeller: this.isSeller,
+              
           // }
           })
           .then((response) => {
             // Handle response from API
-            this.userId = response.data.userId;
-            
-            console.log(response.data);
+            this.userId = response.data;
             if (this.userId == -1) {
               alert("Username doesn't exist.");
             } else if (this.userId == 0) {
