@@ -67,6 +67,7 @@ public class OrderItemImpl extends ServiceImpl<OrderItemMapper, OrderItem> imple
         for (OrderItem item : orderItems){
             Product product = productService.getById(item.getProductId());
             JSONObject json = new JSONObject();
+            json.put("orderItemId", item.getId());
             json.put("name", product.getProductName());
             json.put("price", product.getProductPrice());
             json.put("count", item.getCount());

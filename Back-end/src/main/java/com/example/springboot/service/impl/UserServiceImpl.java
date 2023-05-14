@@ -82,7 +82,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public int updateProfile(User user) {
         User oldUser = userService.getUserByName(user.getUsername());
-        BigInteger id = oldUser.getUserId();
+        int id = oldUser.getUserId();
         user.setUserId(id);
         userService.updateById(user);
         return 1;
