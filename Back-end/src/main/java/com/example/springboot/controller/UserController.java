@@ -36,10 +36,17 @@ public class UserController {
 //    }
 
 
-    @GetMapping("/Login")
-    public int Login(@RequestParam String username, @RequestParam String password){
+    @PostMapping("/Login")
+//    public int Login(@RequestParam String username){
+    public int Login(@RequestBody JSONObject request){
+        String username = request.getString("username");
+        String password = request.getString("password");
+//        String isSeller = request.getString("isSeller");
+        // , @RequestParam boolean isSeller
+
 //        System.out.printf("%s %s%n", username, password);
-        int state =  userService.login(username, password);
+        boolean isSeller = true;
+        int state =  userService.login(username, password, isSeller);
         System.out.println(state);
         return state;
 
@@ -47,6 +54,7 @@ public class UserController {
 
     @GetMapping("/GetProfile")
     public User GetProfile(@RequestParam String username){
+        System.out.println("username");
         User user = userService.getUserByName(username);
         return user;
     }

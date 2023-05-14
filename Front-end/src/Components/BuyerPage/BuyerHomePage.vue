@@ -6,7 +6,7 @@
                     <b-tabs class="ml-2 my-4" content-class="mx-5 my-3" justified vertical lazy>
                         <AccountProfile/>
                         <OrderPage/>
-                        <InventoryPage/>
+                        <!-- <InventoryPage/> -->
                         <b-tab title-item-class="my-1" title="Coming soon" disabled><p>I'm a disabled tab!</p></b-tab>
                     </b-tabs>
                 </div>

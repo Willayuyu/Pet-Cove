@@ -101,8 +101,10 @@ export default {
         // Send username and password to the backend API
         axios
           .post("/user/Login", {
-            username: this.username,
-            password: this.password,
+            params:{
+              username: this.username,
+              password: this.password,
+          }
           })
           .then((response) => {
             // Handle response from API
