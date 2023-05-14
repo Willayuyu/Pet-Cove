@@ -78,7 +78,9 @@ export default {
         axios
             .get("/GetProfile", {
                 params: {
-                    username: this.$store.state.username,
+                    // username: this.$store.state.username,
+                    username: "Flower",
+
                 },
             })
             .then((response) => {

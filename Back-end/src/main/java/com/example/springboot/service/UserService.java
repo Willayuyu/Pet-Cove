@@ -32,7 +32,7 @@ public interface UserService extends IService<User> {
      *login
      **/
 
-    int login(String name, String password);
+    int login(String name, String password, boolean isSeller);
 
     /**
      *logout

@@ -61,9 +61,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     @Override
-    public int login(String name, String password){
+    public int login(String name, String password, boolean isSeller){
 
         User user = userService.getUserByName(name);
+//        if (user.getFlag()==isSeller){
+//
+//        }
         if(user == null) {
             return -1;
         }
