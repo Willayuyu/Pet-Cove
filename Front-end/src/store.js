@@ -15,6 +15,7 @@ export default new Vuex.Store(
     userId:0,
     username:"",
     isLogin: false,
+    address: "",
     items: [
       {
         id:0,

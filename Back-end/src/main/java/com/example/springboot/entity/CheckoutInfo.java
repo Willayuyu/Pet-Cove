@@ -9,7 +9,7 @@ public class CheckoutInfo {
 
     private int buyerId;
 
-    private int sellerId;
+//    private int sellerId;
 
     private List<Integer> productIds;
 

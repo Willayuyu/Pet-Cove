@@ -99,7 +99,8 @@ export default {
                 // this.$store.user.lastName = this.profile.lastName;
                 // this.$store.user.email = this.profile.email;
                 // this.$store.user.phone = this.profile.phone;
-                // this.$store.user.address = this.profile.address;
+                this.$store.state.address = this.profile.address;
+                // console.log(this.$store.state.address)
                 // this.$store.user.flag = this.profile.flag;
             })
             .catch((error) => {
