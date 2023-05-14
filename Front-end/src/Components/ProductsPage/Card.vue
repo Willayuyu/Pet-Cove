@@ -40,7 +40,7 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
-
+import Cart from "@/Components/Cart.vue";
 export default {
   data() {
     return {
@@ -72,6 +72,7 @@ export default {
         productPrice: item.productPrice,
         productQuantity: 1,
         productImage: item.productImage,
+
       };
       axios
         .post("/api/cart/addProductToCart", requestData)
@@ -82,6 +83,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+        this.$refs.cartMove.cartON();
     },
   },
 };
