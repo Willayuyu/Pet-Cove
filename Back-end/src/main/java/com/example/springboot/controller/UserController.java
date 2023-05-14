@@ -36,7 +36,7 @@ public class UserController {
 //    }
 
 
-    @PostMapping("/Login")
+    @GetMapping("/Login")
     public int Login(@RequestParam String username, @RequestParam String password){
 //        System.out.printf("%s %s%n", username, password);
         int state =  userService.login(username, password);
