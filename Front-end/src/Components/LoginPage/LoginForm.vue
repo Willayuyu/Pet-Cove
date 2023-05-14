@@ -109,6 +109,7 @@ export default {
           .then((response) => {
             // Handle response from API
             this.userId = response.data.userId;
+            
             console.log(this.userId);
             if (this.userId == -1) {
               alert("Username doesn't exist.");
@@ -117,6 +118,7 @@ export default {
             } else {
               this.$store.state.isSeller = this.isSeller;
               this.$store.state.userId = this.userId;
+              this.$store.state.username = this.username;
               if (this.isSeller) {
                 this.$router.push("/sellerHomePage");
               } else {

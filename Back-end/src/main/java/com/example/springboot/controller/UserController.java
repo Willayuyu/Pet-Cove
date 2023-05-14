@@ -54,7 +54,7 @@ public class UserController {
 
     @GetMapping("/GetProfile")
     public User GetProfile(@RequestParam String username){
-        System.out.println("username");
+        System.out.println(username);
         User user = userService.getUserByName(username);
         return user;
     }

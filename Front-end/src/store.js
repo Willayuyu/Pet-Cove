@@ -11,6 +11,7 @@ export default new Vuex.Store({
     cartItems:[],
     isSeller:false,
     userId:0,
+    username:"",
     userAvatar:'',
     items: [
       {

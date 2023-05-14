@@ -76,18 +76,17 @@ export default {
     },
     mounted() {
         axios
-            .get("/GetProfile", {
+            .get("/user/GetProfile", {
                 params: {
-                    // username: this.$store.state.username,
-                    username: "Flower",
+                    username: this.$store.state.username,
 
                 },
             })
             .then((response) => {
                 this.profile = response.data; // 将响应数据保存在组件中
-                this.form.username = this.profile.uname;
-                this.form.first_name = this.profile.fname;
-                this.form.last_name = this.profile.lname;
+                this.form.username = this.profile.username;
+                this.form.first_name = this.profile.firstName;
+                this.form.last_name = this.profile.lastName;
                 this.form.email = this.profile.email;
                 this.form.tel = this.profile.phone;
                 this.form.address = this.profile.address;
