@@ -13,7 +13,7 @@ export default new Vuex.Store(
     isSeller:false,
     userId:0,
     username:"",
-    userAvatar:'',
+    isLogin: false,
     items: [
       {
         id:0,

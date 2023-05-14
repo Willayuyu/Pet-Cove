@@ -49,7 +49,6 @@
         <div
           class="row justify-content-between"
           style="background: #7dcf85; padding: 10px 10px 10px 10px"
-          v-if="cartPrice != undefined"
         >
           <div class="flex-column pl-3">
             <h4>Total</h4>
@@ -79,11 +78,10 @@ export default {
       cartPrice: 0,
       cClass: "cart",
       modalClass: "model off",
-      cartId: '',
-      userId: '',
-      userName:'',
-      productId:''
-      
+      cartId: "",
+      userId: "",
+      userName: "",
+      productId: "",
     };
   },
   mounted() {
@@ -95,7 +93,6 @@ export default {
         .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
         .then((response) => {
           this.cartContent = response.data;
-          this.cartId = response.data.cartId;
           this.userId = response.data.userId;
           this.userName = response.data.userName;
           this.calculateCartPrice();
@@ -108,7 +105,7 @@ export default {
       axios
         .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
         .then((response) => {
-          this.cartPrice = response.data.totalPrice.toFixed(2);
+          this.cartPrice = response.data.totalPrice;
         })
         .catch((error) => {
           console.error(error);
@@ -117,7 +114,7 @@ export default {
     removeItem(productId) {
       axios
         .delete(
-          `/api/cart/deleteCartItem?cartId=${this.cartId}&userId=${this.userId}&productId=${productId}`
+          `/api/cart/deleteCartItem?userId=${this.$store.state.userId}&productId=${productId}`
         )
         .then((response) => {
           if (response.data === "Item removed from cart successfully.") {
@@ -140,7 +137,7 @@ export default {
     },
     updateCartItem(item) {
       axios
-        .put(`/api/cart/updateCartItem?cartId=${this.cartId}`, item)
+        .put(`/api/cart/updateCartItem?productId=${this.productId}`, item)
         .then((response) => {
           this.calculateCartPrice();
         })
@@ -172,6 +169,7 @@ export default {
       } else {
         this.cClass = "cart on";
         this.modalClass = "modal";
+        this.fetchCartContent();
       }
     },
   },

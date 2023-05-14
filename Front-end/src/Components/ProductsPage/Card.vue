@@ -65,8 +65,8 @@ export default {
     addToCart(item) {
       // make a post request to add the product to the cart
       const requestData = {
-        userId: item.userId, 
-        userName: item.userName, 
+        userId: this.$store.state.userId, 
+        userName: this.$store.state.username, 
         productId: item.productId,
         productName: item.productName,
         productPrice: item.productPrice,
