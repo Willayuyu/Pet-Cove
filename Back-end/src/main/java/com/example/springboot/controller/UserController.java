@@ -43,6 +43,7 @@ public class UserController {
         String password = request.getString("password");
 //        String isSeller = request.getString("isSeller");
         // , @RequestParam boolean isSeller
+
 //        System.out.printf("%s %s%n", username, password);
         boolean isSeller = true;
         int state =  userService.login(username, password, isSeller);
