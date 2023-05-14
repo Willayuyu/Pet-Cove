@@ -1,99 +1,78 @@
 <template>
-
     <b-tab title="My Products" active>
-        
         <div>
-            <b-table :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage">
+            <b-table :items="products" :fields="fields" :per-page="perPage" :current-page="currentPage">
                 <template #cell(details)="row">
                     <b-button size="sm" @click="showDetails(row.item)">
                         Details
                     </b-button>
                 </template>
-
             </b-table>
             <b-card class="details" v-if="selectedItem" header="Details">
-                {{ selectedItem.description }}
+                {{ selectedItem.productDescription }}
             </b-card>
             <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" />
         </div>
     </b-tab>
 </template>
-
-
+  
 <script>
+/* eslint-disable */
 export default {
-    components: {
-    },
     data() {
         return {
-            items: [
-                { 
-                    id: '01', 
-                    name: "Sports shoes, fashion",
-                    price: 19, 
-                    link: 'http://www.example.com',
-                    description: 'This is a pair of stylish shoes.'
-                }
-                ,
-                { 
-                    id: '02', 
-                    name: "Sports shoes, old",
-                    price: 10, 
-                    link: 'http://www.example.com',
-                    description: 'This is a pair of old fashion shoes.'
-                }
-                ,
-
-                // ... more items
-            ],
+            products: [], // 所有商品的列表
+            selectedItem: null, // 当前选中的商品
             fields: [
-                { key: 'id', label: 'ID', sortable: true},
-                { key: 'name', label: 'Name', sortable: true },
-                { key: 'price', label: 'Price', sortable: true },
-                { key: 'link', label: 'Link'},
-                { key: 'details', label: '', sortable: false },
+                { key: "productName", label: "Name" },
+                { key: "productPrice", label: "Price" },
+                { key: "productNum", label: "Inventory" },
+                { key: "productCategories", label: "Category" },
+                { key: "details", label: "Details" },
             ],
-            // wordmapping: {
-            //     'id': 'No.',
-            //     'price': 'Price (euros)',
-            //     'status': 'Status',
-            //     'username': "User",
-            //     'shippingAddress': 'Shipping Addiress',
-            //     'products': 'Products',
-            // },
-            perPage: 5,
             currentPage: 1,
-            selectedItem: null
-        }
+            perPage: 10,
+            totalRows: 0,
+        };
     },
-    computed: {
-        totalRows() {
-            return this.items.length
-        },
-        // mapWords() {
-        //     return function(key){
-        //         // if (key in this.wordmapping.keys()) {
-        //             return this.wordmapping[key];
-        //         // }   
-        //     }
-        // }
+    mounted() {
+        this.findAllProductsForSeller();
+        setInterval(() => {
+            this.findAllProductsForSeller();
+        }, 5000);
     },
     methods: {
+        // 查询卖家的所有商品
+        async findAllProductsForSeller() {
+            try {
+                const response = await this.$axios.get(
+                    "/api/product/findAllProductForSeller",
+                    {
+                        params: {
+                            sellerId: this.$store.state.userId, // 从 store 中获取当前用户的 id 作为 sellerId
+                        },
+                    }
+                );
+                this.products = response.data;
+                console.log(response.data);
+                this.totalRows = response.data.length;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        // 显示商品的详细信息
         showDetails(item) {
-            this.selectedItem = item
-        }
-    }
-}
-
+            this.selectedItem = item;
+        },
+    },
+};
 </script>
+  
 
 <style>
-
 .details {
     min-height: 300px;
     margin-top: 3rem;
     margin-bottom: 5rem;
-
 }
-
 </style>
