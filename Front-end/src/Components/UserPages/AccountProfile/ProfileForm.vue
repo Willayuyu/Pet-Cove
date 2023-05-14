@@ -127,8 +127,8 @@ export default {
             });
         },
         onLogout() {
-            this.$store.state.isLoggedIn = false;
-            this.$store.state.userId = 0;
+            // this.$store.state.isLoggedIn = false;
+            this.$store.methods.resetState();
             this.$router.push("/");
         },
     },

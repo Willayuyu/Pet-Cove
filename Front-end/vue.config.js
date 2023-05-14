@@ -21,7 +21,8 @@ module.exports = {
     /* 使用代理 */
     proxy: {
       "/user": {
-        target: "http://10.28.141.164:8080", //服务器协议、ip和端口号
+        // target: "http://10.28.141.164:8080", //服务器协议、ip和端口号
+        target: "http://localhost:8080", //服务器协议、ip和端口号
         secure: false, // 如果是https接口，需要配置这个参数
         ws: true, //是否代理websockets
         proxyTimeout: 60000,
@@ -31,7 +32,8 @@ module.exports = {
         },
       },
       "/api": {
-        target: "http://10.28.141.164:8080", //服务器协议、ip和端口号
+        // target: "http://10.28.141.164:8080", //服务器协议、ip和端口号
+        target: "http://localhost:8080", //服务器协议、ip和端口号
         secure: false, // 如果是https接口，需要配置这个参数
         ws: true, //是否代理websockets
         proxyTimeout: 60000,

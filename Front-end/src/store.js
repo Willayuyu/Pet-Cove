@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store(
   {
+    
   state: {
     infoPage:[],
     cartItems:[],
@@ -129,6 +130,16 @@ export default new Vuex.Store(
         type: 'bicycle'
       }
     ]
+  },
+  methods: {
+    resetState(){
+      state.infoPage = [],
+      state.cartItems = [],
+      state.isSeller = false,
+      state.userId = 0,
+      state.username = "",
+      state.userAvatar = ''
+    },
   },
   plugins: [createPersistedState()],
   getters: {
