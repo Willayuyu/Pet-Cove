@@ -22,59 +22,13 @@
           <input
             type="text"
             placeholder="Search"
-            @input="search"
+            v-model="searchText"
             class="form-control"
             @keyup.enter="search"
           />
         </div>
       </div>
-      <div class="row col-6 flex-row-reverse">
-        <div class="view-button">
-          <div class="dropdown">
-            <button
-              class="btn btn-light dropdown-toggle d-block d-lg-none d-xl-none"
-              role="button"
-              id="MenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              CATAGORIES
-            </button>
-            <div class="dropdown-menu" aria-labelledby="MenuLink">
-              <a class="dropdown-item" @click="sortI('bicycle')">Bicycle</a>
-              <a class="dropdown-item" @click="sortI('tennis')">Tennis</a>
-              <a class="dropdown-item" @click="sortI('hiking')">Hiking</a>
-              <a class="dropdown-item" @click="sortI('golf')">Golf</a>
-              <div class="dropdown-divider"></div>
-              <div class="pl-3">
-                <span
-                  class="circle"
-                  style="background-color: yellow"
-                  @click="sortI('yellow')"
-                />
-                <span
-                  class="circle"
-                  style="background-color: blue"
-                  @click="sortI('blue')"
-                />
-                <span
-                  class="circle"
-                  style="background-color: white"
-                  @click="sortI('white')"
-                />
-                <span
-                  class="circle"
-                  style="background-color: red"
-                  @click="sortI('red')"
-                />
-              </div>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" @click="reSet">Reset</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row col-6 flex-row-reverse"></div>
       <div class="row justify-content-center">
         <div class="col col-xl-3 col-lg-3 d-none d-lg-block d-xl-block">
           <div class="card-selector">
@@ -82,10 +36,13 @@
               <div class="search-title">
                 <h4>Catagories +</h4>
                 <br />
-                <h6 @click="sortI('bicycle')">Bicycle</h6>
-                <h6 @click="sortI('tennis')">Tennis</h6>
-                <h6 @click="sortI('hiking')">Hiking</h6>
-                <h6 @click="sortI('golf')">Golf</h6>
+                <h6
+                  v-for="(category, index) in categories"
+                  :key="index"
+                  @click="sortI(category)"
+                >
+                  {{ category }}
+                </h6>
                 <br /><br /><br />
                 <h4 class="search-title">Filter by +</h4>
                 <br />
@@ -93,28 +50,28 @@
                   <h5>Color</h5>
                   <span
                     class="circle"
-                    style="background-color: black"
-                    @click="sortI('black')"
-                  ></span>
-                  <span
-                    class="circle"
-                    style="background-color: blue"
-                    @click="sortI('blue')"
-                  ></span>
-                  <span
-                    class="circle"
-                    style="background-color: white"
-                    @click="sortI('white')"
-                  ></span>
-                  <span
-                    class="circle"
-                    style="background-color: red"
-                    @click="sortI('red')"
+                    v-for="(color, index) in colors"
+                    :key="index"
+                    :style="{ backgroundColor: color }"
+                    @click="sortI(color)"
                   ></span>
                 </div>
                 <br /><br />
                 <h5>Price Range</h5>
-                <slider @clicked="valueSlider" />
+                <div class="price-range">
+                  <input
+                    type="range"
+                    class="form-range"
+                    min="0"
+                    :max="priceRange[1]"
+                    :value="priceRange[0]"
+                    @input="setPrice"
+                  />
+                  <div class="price-labels d-flex justify-content-between">
+                    <span>{{ priceRange[0] }}</span>
+                    <span>{{ priceRange[1] }}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -153,7 +110,8 @@
 <script>
 import slider from "./slider.vue";
 import Card from "./Card.vue";
-
+import axios from "axios";
+/* eslint-disable */
 export default {
   name: "Grid",
   components: {
@@ -163,67 +121,96 @@ export default {
   data() {
     return {
       cards: [],
+      origin: [],
       showCards: 6,
       sortButton: "DEFAULT",
       searchText: "",
+      categories: [],
+      colors: [],
+      priceRange: [],
     };
   },
   created() {
-    this.cards = this.it;
+    this.fetchCards();
   },
   computed: {
-    it() {
-      return this.$store.state.items;
-    },
     slicedCards() {
       return this.cards.slice(0, this.showCards);
     },
   },
   methods: {
+    fetchCards() {
+      axios
+        .get("/api/product/findAllProduct")
+        .then((response) => {
+          this.cards = response.data;
+          this.origin = response.data;
+          // 获取所有类别
+          const categories = [
+            ...new Set(response.data.map((item) => item.productCategories)),
+          ];
+          this.categories = categories;
+
+          // 获取所有颜色
+          const colors = [
+            ...new Set(
+              response.data.map((item) => item.productColor.toLowerCase())
+            ),
+          ];
+          this.colors = colors;
+
+          // 获取价格范围
+          const prices = response.data.map((item) => item.productPrice);
+          this.priceRange = [Math.min(...prices), Math.max(...prices)];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     incCardNumber() {
       return (this.showCards += 6);
     },
-    valueSlider(value) {
-      var x = value[0];
-      var y = value[1];
-      this.cards = this.it.filter((e) => x < e.price && e.price < y);
-    },
-    /*sortDate() {
-      this.cards.sort((a, b) => a.title.length * 2 - b.title.length * 4);
-      return (this.sortButton = "DATE");
-    },*/
     sortPriceAsc() {
-      this.cards.sort((a, b) => a.price - b.price);
-      return (this.sortButton = "Price Ascending");
+      this.cards.sort((a, b) => a.productPrice - b.productPrice);
+      this.sortButton = "PRICE (ASC)";
     },
     sortPriceDesc() {
-      this.cards.sort((a, b) => b.price - a.price);
-      return (this.sortButton = "Price Descending");
+      this.cards.sort((a, b) => b.productPrice - a.productPrice);
+      this.sortButton = "PRICE (DESC)";
     },
-    /*sortTrend() {
-      this.cards.sort((a, b) => a.type.length - b.type.length);
-      return (this.sortButton = "TRENDING");
-    },*/
-    sortI(name) {
-      this.cards = this.it.filter(
-        (e) => e.type.match(name) || e.color.match(name)
+    sortI(value) {
+      this.cards = this.origin.filter(
+        (item) =>
+          item.productCategories === value || item.productColor === value
+      );
+      this.sortButton = value.toUpperCase();
+    },
+    setPrice(event) {
+      const value = event.target.value;
+      this.cards = this.origin.filter(
+        (item) =>
+          item.productPrice >= value && item.productPrice <= this.priceRange[1]
       );
     },
-    reSet() {
-      return (this.cards = this.it);
-    },
-    search(event) {
-      this.searchText = event.target.value.toLowerCase();
-      this.cards = this.it.filter((card) => {
-        return (
-          card.title.toLowerCase().includes(this.searchText) ||
-          card.type.toLowerCase().includes(this.searchText)
+    search() {
+      if (this.searchText.length > 0) {
+        this.cards = this.origin.filter(
+          (item) =>
+            item.productName
+              .toLowerCase()
+              .includes(this.searchText.toLowerCase()) ||
+            item.productCategories
+              .toLowerCase()
+              .includes(this.searchText.toLowerCase())
         );
-      });
+      } else {
+        this.fetchCards();
+      }
     },
   },
 };
 </script>
+
 
 <style>
 .container.grid {
@@ -275,4 +262,5 @@ export default {
   margin-left: 6px;
   cursor: pointer;
 }
+
 </style>

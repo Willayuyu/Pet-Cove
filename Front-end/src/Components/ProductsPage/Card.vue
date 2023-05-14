@@ -42,13 +42,11 @@
 import axios from "axios";
 import Cart from "@/Components/Cart.vue";
 export default {
-  data() {
-    return {
-      CardArray: [],
-    };
-  },
-  mounted() {
-    this.getAllProduct();
+  props: {
+    CardArray: {
+      type: Array,
+      required: true,
+    },
   },
   methods: {
     getAllProduct() {
