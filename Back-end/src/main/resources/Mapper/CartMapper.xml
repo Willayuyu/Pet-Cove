@@ -21,8 +21,7 @@
     <!--deleteCartItem-->
     <delete id="deleteCartItem" parameterType="com.example.springboot.entity.Cart">
         DELETE FROM cart
-        WHERE cart_id = #{cartId}
-        AND user_id = #{userId}
+        WHERE user_id = #{userId}
         AND product_id = #{productId}
     </delete>
 
@@ -30,7 +29,8 @@
     <update id="updateCartItemQuantity" parameterType="java.lang.Integer">
         UPDATE cart
         SET product_quantity = #{productQuantity}
-        WHERE cart_id = #{cartId}
+        WHERE user_id = #{userId}
+        AND product_id = #{productId}
     </update>
 
     <!--getAllCartItems-->

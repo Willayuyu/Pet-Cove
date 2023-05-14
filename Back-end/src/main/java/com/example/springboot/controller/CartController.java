@@ -29,17 +29,14 @@ public class CartController {
 
     /**
      * deleteCartItem
-     * @param cartId
      * @param userId
      * @param productId
      * @return
      */
     @DeleteMapping("/deleteCartItem")
-    public ResponseEntity<String> deleteCartItem(@RequestParam("cartId") Integer cartId,
-                                                 @RequestParam("userId") Integer userId,
+    public ResponseEntity<String> deleteCartItem(@RequestParam("userId") Integer userId,
                                                  @RequestParam("productId") Integer productId) {
         Cart cart = new Cart();
-        cart.setCartId(cartId);
         cart.setUserId(userId);
         cart.setProductId(productId);
 
@@ -51,17 +48,21 @@ public class CartController {
         }
     }
 
+
     /**
      * updateCartItemQuantity
-     * @param cartId
+     * @param userId
+     * @param productId
      * @param productQuantity
      * @return
      */
     @PutMapping("/updateCartItemQuantity")
-    public ResponseEntity<String> updateCartItemQuantity(@RequestParam("cartId") Integer cartId,
+    public ResponseEntity<String> updateCartItemQuantity(@RequestParam("userId") Integer userId,
+                                                         @RequestParam("productId") Integer productId,
                                                          @RequestParam("productQuantity") Integer productQuantity) {
         Cart cart = new Cart();
-        cart.setCartId(cartId);
+        cart.setUserId(userId);
+        cart.setProductId(productId);
         cart.setProductQuantity(productQuantity);
         int rowsAffected = cartService.updateCartItemQuantity(cart);
         if (rowsAffected > 0) {
