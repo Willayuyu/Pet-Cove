@@ -1,6 +1,6 @@
 <template>
 
-    <b-tab title-item-class="mt-1" title="Order Management">
+    <b-tab :active="activeTabIndex === 1" title-item-class="mt-1" title="Order Management">
 
         <b-card header="Order Management">
                     <OrderList/>

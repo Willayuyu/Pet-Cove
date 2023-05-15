@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-table
-      :items="items"
+      :items="buyerOrderDetailList"
       :fields="fields"
       :per-page="perPage"
       :current-page="currentPage"
@@ -13,7 +13,7 @@
     <b-card class="details" v-if="selectedItem" header="Details">
       <b-list-group>
         <b-list-group-item
-          v-if="key !== 'products'"
+          v-if="key in wordmapping"
           v-for="(value, key) in selectedItem"
           :key="key"
         >
@@ -29,7 +29,7 @@
             <b-list-group flush>
               <b-list-group-item
                 href="#"
-                v-for="product in selectedItem.products"
+                v-for="product in buyerOrderItems"
                 :key="product.name"
               >
                 <div class="d-flex justify-content-between">
@@ -44,6 +44,7 @@
           </b-card>
         </b-list-group-item>
       </b-list-group>
+      <b-button v-if = !isCancelled(selectedItem) size="sm" @click="cancelOrder(selectedItem)"> Cancel Order </b-button>
     </b-card>
     <b-pagination
       :total-rows="totalRows"
@@ -54,10 +55,14 @@
 </template>
   
 <script>
+import axios from "axios";
 export default {
   components: {},
   data() {
     return {
+      buyerOrderDetailList: [],
+      sellerOrderItemList: [],
+      buyerOrderItems: [],
       items: [
         {
           id: "01",
@@ -98,23 +103,59 @@ export default {
         // ... more items
       ],
       fields: [
-        { key: "id", label: "No.", sortable: true },
-        { key: "price", label: "Price", sortable: true },
+        // { key: "id", label: "No.", sortable: true },
+        { key: "createdDate", label: "Created Date", sortable: true },
+        { key: "cost", label: "Cost", sortable: true },
         { key: "status", label: "Status", sortable: true },
         { key: "details", label: "", sortable: false },
       ],
       wordmapping: {
-        id: "No.",
-        price: "Price (euros)",
+        // id: "No.",
+        // createdDate: ""
+        cost: "Cost (dollar)",
         status: "Status",
-        username: "User",
+        // username: "User",
         shippingAddress: "Shipping Addiress",
         products: "Products",
       },
       perPage: 10,
       currentPage: 1,
       selectedItem: null,
+      showCancelled: true,
     };
+  },
+  mounted() {
+    if (this.$store.state.isSeller){
+      axios
+            .get("/api/order/SellerGetOrderList", {
+                params: {
+                     sellerId: this.$store.state.userId,
+
+                },
+            })
+            .then((response) => {
+                this.sellerOrderItemList = response.data; 
+                this.$store.state.address = this.profile.address;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }else {
+      axios
+            .get("/api/order/BuyerGetOrderList", {
+                params: {
+                    buyerId: this.$store.state.userId,
+
+                },
+            })
+            .then((response) => {
+                this.buyerOrderDetailList = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    
   },
   computed: {
     totalRows() {
@@ -127,11 +168,61 @@ export default {
         // }
       };
     },
+    
   },
   methods: {
-    showDetails(item) {
-      this.selectedItem = item;
+    cancelOrder(item) {
+      axios
+            .get("/api/order/BuyerCancelOrder", {
+              params:{
+                  orderId: item.id,
+              }
+            })
+            .then((response) => {
+              alert("Cancel Successfully!");
+              item.state = "Cancelled";
+              this.showCancelled = false;
+              location.reload()
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     },
+    isCancelled(selectedItem) {
+      console.log(this.showCancelled)
+      return selectedItem.status == "Cancelled" && this.showCancelled;
+    },
+    showDetails(item) {
+      
+      this.selectedItem = item;
+
+      axios
+            .get("/api/order/GetOneOrder", {
+                params: {
+                    orderId: item.id,
+                },
+            })
+            .then((response) => {
+                this.buyerOrderItems = response.data.products;
+                console.log(this.buyerOrderItems);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+    queryOrderList() {
+
+    }
+    // {
+    //   "id": 10,
+    //     "buyerId": 1,
+    //     "sellerId": 2,
+    //     "cost": 40.0,
+    //     "createdDate": "12-05-2023",
+    //     "createdTime": "12-05-2023 17:45",
+    //     "status": "Pending Shipment",
+    //     "shippingAddress": "Bellevue"
+    // }
   },
 };
 </script>
