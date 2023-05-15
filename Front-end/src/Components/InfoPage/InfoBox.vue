@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="row mb-5">
+    <div class="row mb-5" v-for="item in product" :key="item.productId">
       <div class="col6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-        <img class="img-fluid" :src="product.productImage" />
+        <img class="img-fluid" :src="item.productImage" />
       </div>
 
       <div
@@ -12,9 +12,9 @@
           <span class="float-left pr-3">★★★★★</span>
           <h6 style="width: 190px">3 reviews</h6>
           <h1 class="font-weight-bold text-uppercase pt-3">
-            {{ product.productName }}
+            {{ item.productName }}
           </h1>
-          <h4>${{ product.productPrice }}</h4>
+          <h4>${{ item.productPrice }}</h4>
           <br /><br /><br />
           <div class="control number text-center">
             <button
@@ -38,7 +38,7 @@
             </button>
             <br /><br />
           </div>
-          <button class="add-to-cart-button" @click="addToCart(product)">
+          <button class="add-to-cart-button" @click="addToCart(item)">
             ADD TO CART
           </button>
         </div>
@@ -51,16 +51,12 @@
 /* eslint-disable */
 import axios from "axios";
 export default {
-  props: {
-    productId: {
-      type: Integer,
-      required: true,
-    },
-  },
+  props: ['product'],
   name: "InfoBox",
   data() {
     return {
       quan: 1,
+      product:''
     };
   },
   methods: {
@@ -74,17 +70,8 @@ export default {
     },
     addtoCart(item) {
       // Info box Add to cart button
-      const requestData = {
-        userId: item.userId,
-        userName: item.userName,
-        productId: item.productId,
-        productName: item.productName,
-        productPrice: item.productPrice,
-        productQuantity: this.quan,
-        productImage: item.productImage,
-      };
       axios
-        .post("/api/cart/addProductToCart", requestData)
+        .post("/api/cart/addProductToCart", item)
         .then((response) => {
           console.log(response.data); // should log "Product added successfully"
           // add some code to update the cart count in the UI

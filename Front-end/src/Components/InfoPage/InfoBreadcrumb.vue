@@ -1,13 +1,13 @@
 <template>
   <div>
     <nav class="row justify-content-start" aria-label="breadcrumb">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb" v-for="item in product" :key="item.productId">
         <li class="breadcrumb-item">
           <router-link to="/">Home</router-link>
         </li>
         <li class="breadcrumb-item"><router-link to="/products">Products</router-link></li>
-        <li class="breadcrumb-item">{{ product.productCategories }}</li>
-        <li class="breadcrumb-item active">{{ product.productName }}</li>
+        <li class="breadcrumb-item">{{ item.productCategories }}</li>
+        <li class="breadcrumb-item active">{{ item.productName }}</li>
       </ol>
     </nav>
   </div>
@@ -15,7 +15,12 @@
 
 <script>
 export default {
-  props: ['information'],
+  props: {
+    product: {
+      type: Object,
+      required: true
+    },
+  },
   name: 'InfoBreadcrumb'
 }
 </script>

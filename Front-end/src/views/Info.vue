@@ -2,13 +2,13 @@
   <div class="container py-5" style="padding-top:70px;">
 
     <InfoBreadcrumb :information="information"/>
-    <InfoBox :information="information"/>
+    <InfoBox :product="product" />
     <InfoText />
 
-    <div class="related-item">
+    <div class="related-item" v-for="item in product" :key="item.productId">
       <hr>
-      <h6 class="pb-4">RELATED PRODUCTS</h6>
-      <Card :CardArray="sliceRelatedItems" />
+      <h6 class="pb-4">Description</h6>
+      <p>{{item.productDescription }}</p>
     </div>
 
   </div>
@@ -41,7 +41,7 @@ export default {
       axios.get(`/api/product/findProductDetails?productId=${productId}`)
         .then(response => {
           this.product = response.data;
-          console.log(product); // should log the product details
+          console.log(this.product); // should log the product details
           this.information = response.data.productDescription
         })
         .catch(error => {
