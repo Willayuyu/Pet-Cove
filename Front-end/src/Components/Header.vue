@@ -143,7 +143,7 @@ export default {
       
     },
     getProfile() {
-      if (this.isSeller) {
+      if (this.$store.state.isSeller) {
         this.$router.push("/sellerHomePage");
       } else {
         this.$router.push("/buyerHomePage");
