@@ -55,6 +55,7 @@ export default {
                 productCategories: "",
                 productColor: "",
                 sellerId: this.$store.state.userId,
+                productImage:''
             },
             imageDataUrl: null,
         };
@@ -66,6 +67,7 @@ export default {
                 return;
             }
             try {
+                console.log(this.productData)
                 await this.$axios.post("/api/product/insertProduct", this.productData);
                 alert("Product added successfully.");
                 this.productData.productName = "";
@@ -96,10 +98,13 @@ export default {
             if (!file) {
                 return;
             }
+            this.productData.productImage = URL.createObjectURL(file);
+            console.log(this.productData.productImage)
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
                 this.imageDataUrl = reader.result;
+                
             };
         },
     },

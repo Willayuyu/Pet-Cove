@@ -39,7 +39,7 @@ export default {
         this.findAllProductsForSeller();
         setInterval(() => {
             this.findAllProductsForSeller();
-        }, 5000);
+        }, 50000);
     },
     methods: {
         // 查询卖家的所有商品
