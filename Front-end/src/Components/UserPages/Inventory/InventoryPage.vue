@@ -1,6 +1,6 @@
 <template>
 
-    <b-tab title-item-class="mt-1" title="Inventory Management">
+    <b-tab :active="activeTabIndex === 3" title-item-class="mt-1" title="Inventory Management">
         <b-card header="Inventory Management">
         <b-tabs content-class="mt-3" >
             <MyProducts />

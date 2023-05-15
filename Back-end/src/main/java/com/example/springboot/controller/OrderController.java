@@ -27,41 +27,42 @@ public class OrderController {
 
     @PostMapping("/Checkout")
     public int Checkout(@RequestBody CheckoutInfo checkoutInfo){
+        System.out.println(checkoutInfo);
         int orderId = orderDetailsService.createOrderDetails(checkoutInfo);
         orderItemService.createOrderItem(checkoutInfo, orderId);
         return 1;
     }
 
-    @PostMapping("/BuyerGetOrderList")
+    @GetMapping("/BuyerGetOrderList")
     public List<OrderDetails> BuyerGetOrderList(@RequestParam int buyerId){
         List<OrderDetails> orderList = orderDetailsService.getOrderList(buyerId, true);
         return orderList;
     }
 
-    @PostMapping("/SellerGetOrderList")
+    @GetMapping("/SellerGetOrderList")
     public List<OrderDetails> SellerGetOrderList(@RequestParam int sellerId){
         List<OrderDetails> orderList = orderDetailsService.getOrderList(sellerId, false);
         return orderList;
     }
 
-    @PostMapping("/GetOneOrder")
+    @GetMapping("/GetOneOrder")
     public JSONObject BuyerGetOneOrder(@RequestParam int orderId){
         JSONObject json = new JSONObject();
 
 //        json.put("buyerName", "buyer");
 
-        OrderDetails orderDetails = orderDetailsService.getById(orderId);
-        json.put("orderDetails", orderDetails);
-        int buyerId = orderDetails.getBuyerId();
-        User buyer = userService.getUserById(buyerId);
-        json.put("buyerName", buyer.getUsername());
+//        OrderDetails orderDetails = orderDetailsService.getById(orderId);
+//        json.put("orderDetails", orderDetails);
+//        int buyerId = orderDetails.getBuyerId();
+//        User buyer = userService.getUserById(buyerId);
+//        json.put("buyerName", buyer.getUsername());
         List<JSONObject> items = orderItemService.getItemsFromOrder(orderId);
         json.put("products", items);
         return json;
     }
 
 
-    @PostMapping("/BuyerCancelOrder")
+    @GetMapping("/BuyerCancelOrder")
     public int CancelOrder(@RequestParam int orderId){
         OrderDetails orderDetails = orderDetailsService.getById(orderId);
         orderDetails.setStatus("Cancelled");

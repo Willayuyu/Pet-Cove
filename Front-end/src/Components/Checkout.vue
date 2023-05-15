@@ -107,18 +107,25 @@ export default {
             //     // implement PayPal payment processing here
             // }
             // make an API call to create an order using the cart items
+            this.productIdList = [];
             for (let i = 0; i < this.items.length; i++){
-                this.productIdList.push(this.items[i].productId);
+                for (let j=0; j< this.items[i].productQuantity; j++){
+                    this.productIdList.push(this.items[i].productId);
+                }
             }
+            // console.log(this.productIdList);
+
             axios
                 .post("/api/order/Checkout", {
-                buyerId: this.userId,
-                products: this.productIdList,
-                shippingAddress: this.$store.state.address,
+                    buyerId: this.$store.state.userId,
+                    productIds: this.productIdList,
+                    shippingAddress: this.$store.state.address,
                 })
                 .then((response) => {
                 // redirect to the order confirmation page
-                this.$router.push("/orderPage");
+                
+                this.$router.push("/buyerHomePage");
+                alert("Payment successfully!")
                 })
                 .catch((error) => {
                 console.error(error);

@@ -15,6 +15,7 @@ export default new Vuex.Store(
     userId:0,
     username:"",
     isLogin: false,
+    activeTabIndex: 0,
     address: "",
     items: [
       {
@@ -171,6 +172,9 @@ export default new Vuex.Store(
     }
   },
   mutations: {
+    setActiveTabIndex(state, index) {
+      state.activeTabIndex = index;
+    },
     inCart(state, n) { // Cart Component
       return state.cartItems.push(n)
     },

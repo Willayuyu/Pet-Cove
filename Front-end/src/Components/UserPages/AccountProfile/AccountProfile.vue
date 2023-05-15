@@ -2,7 +2,7 @@
     
     <div >
         
-        <b-tab title-item-class="mt-1" title="My Account" active>
+        <b-tab :active="activeTabIndex === 0" title-item-class="mt-1" title="My Account" active>
                 <b-card header="My Account">
                     <ProfileForm/>
                 </b-card>
