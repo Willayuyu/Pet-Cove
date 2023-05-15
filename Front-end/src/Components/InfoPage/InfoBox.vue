@@ -51,7 +51,12 @@
 /* eslint-disable */
 import axios from "axios";
 export default {
-  props: ["information"],
+  props: {
+    productId: {
+      type: Integer,
+      required: true,
+    },
+  },
   name: "InfoBox",
   data() {
     return {
@@ -97,6 +102,7 @@ export default {
   min-width: 90% !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .control.number {
   border: 0.2px solid lightgrey;
   font-size: 19px;
@@ -105,6 +111,7 @@ export default {
   width: 155px;
   margin-bottom: 30px;
 }
+
 .control.number button {
   border: none;
   background: inherit;
@@ -112,13 +119,16 @@ export default {
   height: 35px;
   outline-style: none;
 }
+
 .control.number button:active {
   background-color: lightgrey;
 }
+
 .control.number h5 {
   margin-left: 13px;
   margin-right: 13px;
 }
+
 .add-to-cart-button {
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
@@ -135,6 +145,7 @@ export default {
   border: none;
   box-shadow: 0 26px 38px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .add-to-cart-button:hover,
 .add-to-cart-button:focus {
   background-color: inherit;

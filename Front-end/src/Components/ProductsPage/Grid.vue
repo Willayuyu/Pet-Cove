@@ -147,7 +147,7 @@ export default {
           this.origin = response.data;
           // 获取所有类别
           const categories = [
-            ...new Set(response.data.map((item) => item.productCategories.toLowerCase())),
+            ...new Set(response.data.map((item) => item.productCategories)),
           ];
           this.categories = categories;
 
