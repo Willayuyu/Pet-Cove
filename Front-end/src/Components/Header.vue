@@ -53,7 +53,7 @@
         </div>
       </section>
 
-      <div class="bag pr-3" @click="openCart">
+      <div class="bag pr-3" @click="openCart" v-if="!this.$store.state.isSeller">
         <img class="pb-1" src="@/assets/cart.svg" />
         <span class="mb-3" v-if="this.bagItemscount > 0">{{
           bagItemscount

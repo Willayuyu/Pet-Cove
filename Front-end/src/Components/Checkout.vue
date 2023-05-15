@@ -13,7 +13,7 @@
                     {{ item.productName }} - {{ item.productQuantity }} * ${{ item.productPrice }}
                 </li>
             </ul>
-            <p>Total: ${{ cartPrice}}</p>
+            <p>Total: ${{ cartPrice }}</p>
             <h3>Select Payment Method:</h3>
             <div>
                 <input type="radio" id="credit-card" name="payment-method" value="credit-card"
@@ -64,9 +64,9 @@ export default {
         };
     },
     mounted() {
-     this.fetchCartContent();
+        this.fetchCartContent();
     },
-    
+
     // computed: {
     //     totalPrice() {
     //         return this.items.reduce((total, item) => total + item.price, 0);
@@ -77,24 +77,24 @@ export default {
             axios
                 .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
                 .then((response) => {
-                this.items = response.data;
-                this.calculateCartPrice();
+                    this.items = response.data;
+                    this.calculateCartPrice();
                 })
                 .catch((error) => {
-                console.error(error);
+                    console.error(error);
                 });
-            },
+        },
         calculateCartPrice() {
             axios
                 .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
                 .then((response) => {
-                // console.log(response.data)
-                this.cartPrice = response.data;
+                    // console.log(response.data)
+                    this.cartPrice = response.data;
                 })
                 .catch((error) => {
-                console.error(error);
+                    console.error(error);
                 });
-            },
+        },
         login() {
             this.$router.push('/login');
         },
@@ -108,8 +108,8 @@ export default {
             // }
             // make an API call to create an order using the cart items
             this.productIdList = [];
-            for (let i = 0; i < this.items.length; i++){
-                for (let j=0; j< this.items[i].productQuantity; j++){
+            for (let i = 0; i < this.items.length; i++) {
+                for (let j = 0; j < this.items[i].productQuantity; j++) {
                     this.productIdList.push(this.items[i].productId);
                 }
             }
@@ -122,13 +122,27 @@ export default {
                     shippingAddress: this.$store.state.address,
                 })
                 .then((response) => {
-                // redirect to the order confirmation page
-                
-                this.$router.push("/buyerHomePage");
-                alert("Payment successfully!")
+                    // redirect to the order confirmation page
+
+                    this.$router.push("/buyerHomePage");
+                    alert("Payment successfully!")
+                    for(let i= 0; i<this.items.length;i++){
+                        axios
+                            .delete(
+                                `/api/cart/deleteCartItem?userId=${this.$store.state.userId}&productId=${this.items[i].productId}`
+                            )
+                            .then((response) => {
+                                if (response.data === "Item removed from cart successfully.") {
+                                    this.fetchCartContent();
+                                }
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                            });
+                    }
                 })
                 .catch((error) => {
-                console.error(error);
+                    console.error(error);
                 });
         },
     },
