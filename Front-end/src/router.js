@@ -12,7 +12,6 @@ const SellerHomePage = () => import('./Components/UserPages/SellerHomePage.vue')
 const BuyerHomePage = () => import('./Components/UserPages/BuyerHomePage.vue')
 const TestPage = () => import('@/views/Test/TestPage.vue')
 const Checkout =()=>import('./Components/Checkout.vue')
-
 const OrderPage = () => import('./Components/UserPages/Orders/OrderPage')
 
 Vue.use(Router)
