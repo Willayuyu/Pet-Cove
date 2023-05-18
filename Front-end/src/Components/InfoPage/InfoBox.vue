@@ -66,7 +66,7 @@ export default {
       // Info box Decrememnt button
       if (this.quan >= 2) return this.quan--;
     },
-    addtoCart(item) {
+    addToCart(item) {
       // make a post request to add the product to the cart
       const requestData = {
         userId: this.$store.state.userId, 
