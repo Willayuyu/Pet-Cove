@@ -37,6 +37,14 @@ public interface CartMapper {
      */
     List<Cart> getAllCartItems(Integer userId);
 
+    /**
+     * findProductInCart
+     * @param userId
+     * @param productId
+     * @return
+     */
+    Cart findProductInCart(Integer userId, Integer productId);
+
 
 
 

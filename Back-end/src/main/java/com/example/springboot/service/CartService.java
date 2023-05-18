@@ -8,9 +8,11 @@ public interface CartService {
 
     /**
      * addProductToCart
+     *
      * @param cart
+     * @return
      */
-    void addProductToCart(Cart cart);
+    int addProductToCart(Cart cart);
 
     /**
      * deleteCartItem
@@ -35,6 +37,8 @@ public interface CartService {
     long calculateTotalPrice(List<Cart> cartItems);
 
     List<Cart> getAllCartItems(Integer userId);
+
+    Cart findProductInCart(Integer userId, Integer productId);
 
 
 

@@ -96,6 +96,19 @@ public class CartController {
         return list;
     }
 
+    /**
+     * findProductInCart
+     * @param userId
+     * @param productId
+     * @return
+     */
+    @GetMapping("/findProductInCart")
+    public Cart findProductInCart(@RequestParam("userId") Integer userId,
+                                        @RequestParam("productId") Integer productId){
+        Cart cart = cartService.findProductInCart(userId, productId);
+        return cart;
+
+    }
 
 
 }
