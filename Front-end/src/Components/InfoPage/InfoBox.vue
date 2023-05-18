@@ -9,8 +9,6 @@
         class="col6 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex align-items-center justify-content-start"
       >
         <div class="info pt-xl-0 pt-lg-0 pt-5">
-          <span class="float-left pr-3">★★★★★</span>
-          <h6 style="width: 190px">3 reviews</h6>
           <h1 class="font-weight-bold text-uppercase pt-3">
             {{ item.productName }}
           </h1>
@@ -69,9 +67,19 @@ export default {
       if (this.quan >= 2) return this.quan--;
     },
     addtoCart(item) {
-      // Info box Add to cart button
+      // make a post request to add the product to the cart
+      const requestData = {
+        userId: this.$store.state.userId, 
+        userName: this.$store.state.username, 
+        productId: item.productId,
+        productName: item.productName,
+        productPrice: item.productPrice,
+        productQuantity: 1,
+        productImage: item.productImage,
+
+      };
       axios
-        .post("/api/cart/addProductToCart", item)
+        .post("/api/cart/addProductToCart", requestData)
         .then((response) => {
           console.log(response.data); // should log "Product added successfully"
           // add some code to update the cart count in the UI
@@ -79,6 +87,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+        this.$refs.cartMove.cartON();
     },
   },
 };
