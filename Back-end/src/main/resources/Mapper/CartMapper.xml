@@ -38,6 +38,11 @@
         SELECT * FROM cart WHERE user_id = #{userId}
     </select>
 
+    <!--findProductInCart-->
+    <select id="findProductInCart" parameterType="java.lang.Integer" resultMap="CartEntityMap">
+        SELECT * FROM cart WHERE user_id = #{userId} AND product_id = #{productId}
+    </select>
+
 
 
 
