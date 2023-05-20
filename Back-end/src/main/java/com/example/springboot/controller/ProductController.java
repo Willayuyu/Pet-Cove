@@ -18,7 +18,7 @@ public class ProductController {
     private ProductService productService;
 
     /**
-     * find all product
+     * On the product page, this api can select all the product information and dispaly on the screen.
      * @return list
      */
     @GetMapping("/findAllProduct")
@@ -28,9 +28,9 @@ public class ProductController {
     }
 
     /**
-     * findAllProductForSeller
-     * @param
-     * @return
+     * Sellers can check all the products they have listed on the product management page.
+     * @param sellerId
+     * @return list1
      */
     @GetMapping("/findAllProductForSeller")
     public List<Product> findAllProductForSeller(@RequestParam(value = "sellerId", required = false) Integer sellerId){
@@ -39,9 +39,9 @@ public class ProductController {
     }
 
     /**
-     * findProductDetails
+     * On the product page, user can select one specific product and check the detailed information of the product.
      * @param productId
-     * @return
+     * @return list2
      */
     @GetMapping("/findProductDetails")
     public List<Product> findProductDetails(@RequestParam(value = "productId", required = false) Integer productId){
@@ -51,7 +51,7 @@ public class ProductController {
 
 
     /**
-     * findProductByInput
+     * On the product page, user can select product through the input for example, the productName, productCategories,productColor,price range.
      * @param productName
      * @param productCategories
      * @param productColor
@@ -77,7 +77,7 @@ public class ProductController {
     }
 
     /**
-     * insertProduct
+     * Seller can add the new product to sell on the product manage page.
      * @param product
      * @return
      */
@@ -88,7 +88,7 @@ public class ProductController {
     }
 
     /**
-     * deleteProductById
+     * Seller can delete product on the product manage page.
      * @param productId
      * @return
      */
@@ -103,7 +103,7 @@ public class ProductController {
     }
 
     /**
-     * updateProductById
+     * Seller can update product information on the product manage page.
      * @param productId
      * @param product
      * @return
@@ -119,8 +119,6 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
         }
     }
-
-
 
 
 
