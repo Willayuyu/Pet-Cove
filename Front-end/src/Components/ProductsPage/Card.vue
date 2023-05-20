@@ -49,6 +49,7 @@ export default {
     },
   },
   methods: {
+    //Fetches all products from the server.
     getAllProduct() {
       axios
         .get("/api/product/findAllProduct")
@@ -60,6 +61,7 @@ export default {
           console.log(error);
         });
     },
+    //Add a product to the cart.
     addToCart(item) {
       // make a post request to add the product to the cart
       const requestData = {

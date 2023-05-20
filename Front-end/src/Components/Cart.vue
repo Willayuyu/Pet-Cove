@@ -88,6 +88,7 @@ export default {
     this.fetchCartContent();
   },
   methods: {
+    //Fetches the cart content for the current user from the server.
     fetchCartContent() {
       axios
         .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
@@ -101,6 +102,7 @@ export default {
           console.error(error);
         });
     },
+    //Calculates the total price of the items in the cart for the current user.
     calculateCartPrice() {
       axios
         .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
@@ -112,6 +114,7 @@ export default {
           console.error(error);
         });
     },
+    //Removes an item from the cart for the current user.
     removeItem(productId) {
       axios
         .delete(
@@ -126,16 +129,19 @@ export default {
           console.error(error);
         });
     },
+    //Increases the quantity of a specific item in the cart.
     increaseQuantity(item) {
       item.productQuantity++;
       this.updateCartItem(item);
     },
+    //decreases the quantity of a specific item in the cart.
     decreaseQuantity(item) {
       if (item.productQuantity > 1) {
         item.productQuantity--;
         this.updateCartItem(item);
       }
     },
+    //Updates the quantity of a specific item in the cart on the server.
     updateCartItem(item) {
       axios
         .put(`/api/cart/updateCartItemQuantity?userId=${this.$store.state.userId}&productId=${item.productId}&productQuantity=${item.productQuantity}`)
@@ -146,6 +152,7 @@ export default {
           console.error(error);
         });
     },
+    //Performs the checkout process.
     checkout() {
       if (this.$store.state.isLogin){
         this.$router.push("/Checkout");
@@ -154,6 +161,7 @@ export default {
       }
       
     },
+    //Toggles the visibility of the cart and modal.
     cartON() {
       if (this.cClass === "cart on") {
         this.cClass = "cart";

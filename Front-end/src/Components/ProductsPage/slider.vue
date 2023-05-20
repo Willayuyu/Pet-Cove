@@ -36,6 +36,7 @@ export default {
     }
   },
   methods: {
+    //Retrieves the value from a slider component and emits a 'clicked' event with the value.
     getValue(name) {
       let slider = this.$refs[name]
       this.$emit('clicked', slider.getValue())

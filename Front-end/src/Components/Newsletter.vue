@@ -30,6 +30,7 @@
 export default {
   name: 'Newsletter',
   methods: {
+    //Handles the submission of a form or an action related to subscribing.
     haSubmit() {
       return alert('Thank you for subscribing')
     }

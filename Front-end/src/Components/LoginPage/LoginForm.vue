@@ -84,6 +84,7 @@ export default {
     };
   },
   methods: {
+    //validate the login form
     validateForm() {
       const inputs = document.querySelectorAll(".login input");
       let isValid = true;

@@ -61,6 +61,7 @@ export default {
         };
     },
     methods: {
+        //Handles the addition of a new product.
         async addProduct() {
             if (!this.isFormValid()) {
                 alert("Please fill in all fields.");
@@ -82,6 +83,7 @@ export default {
                 console.error(error);
             }
         },
+        //Checks if all the required form fields are filled in and if the imageDataUrl is available.
         isFormValid() {
             return (
                 this.productData.productName &&
@@ -93,6 +95,7 @@ export default {
                 this.imageDataUrl
             );
         },
+        //Handles the previewing of the selected image.
         previewImage(event) {
             const file = event.target.files[0];
             if (!file) {

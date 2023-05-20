@@ -138,10 +138,12 @@ export default {
     },
   },
   methods: {
+    //Opens the cart.
     openCart() {
       this.$refs.cartMove.cartON();
       
     },
+    //Navigates to the profile page based on the user's role.
     getProfile() {
       if (this.$store.state.isSeller) {
         this.$router.push("/sellerHomePage");

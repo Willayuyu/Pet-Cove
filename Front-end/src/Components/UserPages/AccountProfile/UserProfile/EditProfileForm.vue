@@ -126,6 +126,7 @@
       }
     },
     methods: {
+      //Displays an alert with the JSON representation of the user data.
       updateProfile () {
         alert('Your data: ' + JSON.stringify(this.user))
       }

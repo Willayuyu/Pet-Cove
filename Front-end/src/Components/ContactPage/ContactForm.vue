@@ -33,6 +33,7 @@
 export default {
   name: 'ContactForm',
   methods:{
+    //submit contact message
     submit(){
       alert('Thanks for your message. we will response as soon as possible!')
     }

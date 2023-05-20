@@ -13,9 +13,6 @@
 </template>
 
 <script>
-// import UserProfile from './UserProfile.vue';
-
-// import TestPage from '../../../views/Test/TestPage.vue';
 import ProfileForm from './ProfileForm.vue';
 
 export default{

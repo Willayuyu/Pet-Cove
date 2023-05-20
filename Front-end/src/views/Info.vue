@@ -37,6 +37,7 @@ export default {
     this.getProductDetails(this.$route.params.productId);
   },
   methods:{
+    //Retrieves the details of a product based on its productId.
     getProductDetails(productId){
       axios.get(`/api/product/findProductDetails?productId=${productId}`)
         .then(response => {

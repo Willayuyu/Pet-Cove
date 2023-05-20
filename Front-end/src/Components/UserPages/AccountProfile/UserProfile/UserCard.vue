@@ -46,6 +46,7 @@
       }
     },
     methods: {
+      //Determines the CSS classes to be applied to an element based on the provided index.
       getClasses (index) {
         var remainder = index % 3
         if (remainder === 0) {

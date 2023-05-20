@@ -66,13 +66,8 @@ export default {
     mounted() {
         this.fetchCartContent();
     },
-
-    // computed: {
-    //     totalPrice() {
-    //         return this.items.reduce((total, item) => total + item.price, 0);
-    //     },
-    // },
     methods: {
+        //Fetches the cart items from the server and updates the items array and cart price.
         fetchCartContent() {
             axios
                 .get(`/api/cart/getAllCartItems?userId=${this.$store.state.userId}`)
@@ -84,6 +79,7 @@ export default {
                     console.error(error);
                 });
         },
+        //Calculates the total price of the items in the cart.
         calculateCartPrice() {
             axios
                 .get(`/api/cart/totalPrice?userId=${this.$store.state.userId}`)
@@ -95,18 +91,12 @@ export default {
                     console.error(error);
                 });
         },
+        //Redirects the user to the login page.
         login() {
             this.$router.push('/login');
         },
+        //Handles the payment process.
         processPayment() {
-            // if (this.selectedPaymentMethod === "credit-card") {
-            //     // implement credit card payment processing here
-            //     /* eslint-disable */
-            //     console.log("Processing credit card payment...");
-            // } else if (this.selectedPaymentMethod === "paypal") {
-            //     // implement PayPal payment processing here
-            // }
-            // make an API call to create an order using the cart items
             this.productIdList = [];
             for (let i = 0; i < this.items.length; i++) {
                 for (let j = 0; j < this.items[i].productQuantity; j++) {
@@ -114,7 +104,6 @@ export default {
                 }
             }
             // console.log(this.productIdList);
-
             axios
                 .post("/api/order/Checkout", {
                     buyerId: this.$store.state.userId,

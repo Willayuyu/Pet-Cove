@@ -132,6 +132,7 @@ export default {
     };
   },
   methods: {
+    //validate the register form
     validateForm() {
       const inputs = document.querySelectorAll(".login input");
       let isValid = true;

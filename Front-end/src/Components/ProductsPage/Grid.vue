@@ -134,11 +134,13 @@ export default {
     this.fetchCards();
   },
   computed: {
+    //Return a portion of the `cards` array based on the `showCards` property.
     slicedCards() {
       return this.cards.slice(0, this.showCards);
     },
   },
   methods: {
+    //Fetches all cards from the server and performs data manipulation.
     fetchCards() {
       axios
         .get("/api/product/findAllProduct")
@@ -167,17 +169,21 @@ export default {
           console.log(error);
         });
     },
+    //Increases the number of cards to be shown by 6.
     incCardNumber() {
       return (this.showCards += 6);
     },
+    //Sorts the `cards` array in ascending order based on product price.
     sortPriceAsc() {
       this.cards.sort((a, b) => a.productPrice - b.productPrice);
       this.sortButton = "PRICE (ASC)";
     },
+    //Sorts the `cards` array in descending order based on product price.
     sortPriceDesc() {
       this.cards.sort((a, b) => b.productPrice - a.productPrice);
       this.sortButton = "PRICE (DESC)";
     },
+    //Filters and updates the `cards` array based on the provided value.
     sortI(value) {
       this.cards = this.origin.filter(
         (item) =>
@@ -185,6 +191,7 @@ export default {
       );
       this.sortButton = value.toUpperCase();
     },
+    //Filters and updates the `cards` array based on the provided price value.
     setPrice(event) {
       const value = event.target.value;
       this.cards = this.origin.filter(
@@ -192,6 +199,7 @@ export default {
           item.productPrice >= value && item.productPrice <= this.priceRange[1]
       );
     },
+    //Filters and updates the `cards` array based on the search text.
     search() {
       if (this.searchText.length > 0) {
         this.cards = this.origin.filter(

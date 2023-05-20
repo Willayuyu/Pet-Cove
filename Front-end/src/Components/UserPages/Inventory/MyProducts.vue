@@ -96,7 +96,7 @@ export default {
         // }, 600000);
     },
     methods: {
-        // 查询卖家的所有商品
+        // Query all items of sellers
         async findAllProductsForSeller() {
             try {
                 const response = await this.$axios.get(
@@ -114,12 +114,12 @@ export default {
                 console.error(error);
             }
         },
-        // 显示商品的详细信息
+        // Show product details
         showDetails(item) {
             this.selectedItem = item;
             this.selectedProductFields = null
         },
-        // 编辑商品
+        // Edit product
         editProduct(item) {
             // TODO: Implement the editProduct method
             this.productData = item;
@@ -128,7 +128,7 @@ export default {
             this.selectedItem = null
             console.log("Editing product", item);
         },
-        // 删除商品
+        // delete product
         deleteProduct(item) {
             // TODO: Implement the deleteProduct method
             this.selectedProductFields = null
@@ -142,17 +142,14 @@ export default {
                 })
                 .catch(error => {
                     console.error(error)
-                    // 删除商品失败
                 })
         },
+        //update product
         updateProduct() {
-            // 判断是否有更改数据
             axios
                 .put(`/api/product/${this.productData.productId}/updateProductById`, this.productData)
                 .then((response) => {
-                    // 隐藏编辑面板
                     this.selectedProductFields = false;
-                    // 重置被选中的商品
                     this.productData = null;
                     alert("update successfully")
                 })
@@ -160,13 +157,12 @@ export default {
                     console.error(error);
                 });
         },
+        //Checks if there are any changes in the product data compared to the original data.
         checkProductDataChanged() {
-            // 获取原始数据和新数据
             const originalData = this.productOriginal;
             const newData = this.productData;
             console.log(originalData, new data)
             let hasChanges = false;
-            // 判断每个字段是否相同
             for (const key in newData) {
                 if (newData[key] !== originalData[key]) {
                     hasChanges = true;

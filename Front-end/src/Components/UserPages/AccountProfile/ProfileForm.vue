@@ -108,6 +108,7 @@ export default {
             });
     },
     methods: {
+        //Handles the form submission event.
         onSubmit(event) {
             event.preventDefault();
             const user = {
@@ -132,6 +133,7 @@ export default {
                     alert("Profile update failed!");
                 });
         },
+        //Handles the form reset event.
         onReset(event) {
             event.preventDefault();
             // Reset our form values
@@ -146,6 +148,7 @@ export default {
                 this.$refs.form.resetValidation();
             });
         },
+        //Handles the logout event.
         onLogout() {
             // this.$store.state.isLoggedIn = false;
             this.$store.state.infoPage = [],

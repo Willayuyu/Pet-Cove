@@ -58,16 +58,16 @@ export default {
     };
   },
   methods: {
+    // Info box Incrememnt button
     inc() {
-      // Info box Incrememnt button
       if (this.quan <= 8) return this.quan++;
     },
+     // Info box Decrememnt button
     dec() {
-      // Info box Decrememnt button
       if (this.quan >= 2) return this.quan--;
     },
+    // make a post request to add the product to the cart
     addToCart(item) {
-      // make a post request to add the product to the cart
       const requestData = {
         userId: this.$store.state.userId, 
         userName: this.$store.state.username, 
