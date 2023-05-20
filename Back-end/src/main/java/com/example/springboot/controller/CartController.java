@@ -17,7 +17,7 @@ public class CartController {
     private CartService cartService;
 
     /**
-     * addProductToCart
+     * Users can add the product to their cart.
      * @param cart
      * @return
      */
@@ -28,7 +28,7 @@ public class CartController {
     }
 
     /**
-     * deleteCartItem
+     * Users can delete the product in their cart.
      * @param userId
      * @param productId
      * @return
@@ -50,7 +50,7 @@ public class CartController {
 
 
     /**
-     * updateCartItemQuantity
+     * Users can update the quantity of product in their cart.
      * @param userId
      * @param productId
      * @param productQuantity
@@ -74,7 +74,7 @@ public class CartController {
 
 
     /**
-     * calculateTotalPrice
+     * It can help the user to calculate the total price of the products in their cart.
      * @param userId
      * @return
      */
@@ -86,7 +86,7 @@ public class CartController {
     }
 
     /**
-     * getAllCartItems
+     * It can help the user to check all  products in their cart.
      * @param userId
      * @return
      */
