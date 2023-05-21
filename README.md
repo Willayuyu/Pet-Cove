@@ -34,11 +34,3 @@ http://localhost:8080
 
 ## Function Design
 
-![image-20230520175014710](/Users/zhenghan/Library/Application Support/typora-user-images/image-20230520175014710.png)
-
-
-
-
-
-
-
