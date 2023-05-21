@@ -8,7 +8,7 @@ spring:
 #    url: jdbc:mysql://10.28.141.164:3306/e-commercial
 #    url: jdbc:mysql://localhost:3306/ASE # local
 #    url: jdbc:mysql://aseDB:3306/ASE # docker
-#    url: jdbc:mysql://47.250.53.77:3306/ASE
+#    url: jdbc:mysql://47.250.53.77:3306/ASE # remote host
     url: jdbc:mysql://localhost:3307/ASE # port to remote server
     username: root
     password: alibabaRoot
