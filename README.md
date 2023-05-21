@@ -33,4 +33,5 @@ http://localhost:8080
 ```
 
 ## Function Design
+![Function](./images/function.png)
 
