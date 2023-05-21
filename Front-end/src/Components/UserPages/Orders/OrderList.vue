@@ -125,36 +125,7 @@ export default {
     };
   },
   mounted() {
-    if (this.$store.state.isSeller){
-      axios
-            .get("/api/order/SellerGetOrderList", {
-                params: {
-                     sellerId: this.$store.state.userId,
-
-                },
-            })
-            .then((response) => {
-                this.sellerOrderItemList = response.data; 
-                this.$store.state.address = this.profile.address;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }else {
-      axios
-            .get("/api/order/BuyerGetOrderList", {
-                params: {
-                    buyerId: this.$store.state.userId,
-
-                },
-            })
-            .then((response) => {
-                this.buyerOrderDetailList = response.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    this.getOrderList();
     
   },
   computed: {
@@ -171,6 +142,38 @@ export default {
     
   },
   methods: {
+    getOrderList() {
+        if (this.$store.state.isSeller){
+        axios
+              .get("/api/order/SellerGetOrderList", {
+                  params: {
+                      sellerId: this.$store.state.userId,
+
+                  },
+              })
+              .then((response) => {
+                  this.sellerOrderItemList = response.data; 
+                  this.$store.state.address = this.profile.address;
+              })
+              .catch((error) => {
+                  console.log(error);
+              });
+      }else {
+        axios
+              .get("/api/order/BuyerGetOrderList", {
+                  params: {
+                      buyerId: this.$store.state.userId,
+
+                  },
+              })
+              .then((response) => {
+                  this.buyerOrderDetailList = response.data;
+              })
+              .catch((error) => {
+                  console.log(error);
+              });
+      }
+    },
     cancelOrder(item) {
       axios
             .get("/api/order/BuyerCancelOrder", {
@@ -179,10 +182,11 @@ export default {
               }
             })
             .then((response) => {
-              alert("Cancel Successfully!");
               item.state = "Cancelled";
               this.showCancelled = false;
-              location.reload()
+              // location.reload()
+              this.getOrderList();
+              alert("Cancel Successfully!");
             })
             .catch((error) => {
                 console.log(error);

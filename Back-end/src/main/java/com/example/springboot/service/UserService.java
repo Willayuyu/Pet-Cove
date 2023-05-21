@@ -19,6 +19,8 @@ public interface UserService extends IService<User> {
 
     /**
      *check password
+     * @Params
+     * @Return
      **/
     public boolean checkPassword(String name, String password);
 

@@ -12,6 +12,11 @@ import java.util.List;
 @Component(value = "orderItemService")
 public interface OrderItemService extends IService<OrderItem> {
 
+    /**
+     *
+     * @param info
+     * @param orderId
+     */
     public void createOrderItem(CheckoutInfo info, int orderId);
 //    int orderId, List<Integer> productIds
 
