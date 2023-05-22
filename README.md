@@ -2,7 +2,7 @@
 
 An online shopping mall system (sports products) that provides users with a convenient and fast online shopping experience.
 
-## Installation steps
+## Start steps
 
 **1.Cloning projects to local:**
 
@@ -10,22 +10,23 @@ An online shopping mall system (sports products) that provides users with a conv
 git clone https://github.com/Willayuyu/Pet-Cove.git
 ```
 
-**2.Running front-end projects:**
+**2.Preparation:**
 
 ```
 Please install the tools in requirements.txt.
 ```
 
-**3.Running back-end project:**
+**3.Running both back-end and front-end services:**
 
 ```
-First start the back-end service and then front-end service. Specific instru
+First start the back-end service and then front-end service. 
+Specific instructions can be found in "Instructions to run the application.md"
 ```
 
-**4.View website**
+**4.View web page**
 
 ```
-http://localhost:8080
+You should be able to reach the web page at http://localhost:8081.
 ```
 
 ## Function Design
