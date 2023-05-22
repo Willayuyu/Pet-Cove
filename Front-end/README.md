@@ -1,6 +1,6 @@
-# Vue Store-Front Templete
+# Vue E-commerce
 
-> An E-commerce templete made with bootstrap4
+> An E-commerce platform application made with bootstrap4
 > and Vue/Vuex/Vue-router.
 
 ## Development/Producation Setup
@@ -9,7 +9,6 @@
 # Open the project folder
 cd Front-end && npm install
 
-# FOR DEV: If you have **vue/cli 3** then through **vue ui** you can import the file and serve it. else 
 npm run serve
 
 # FOR BUILD: 
@@ -24,8 +23,3 @@ npm install cors
 
 ```
 
-
-
-# Project Structure 
-
->coming soon!
