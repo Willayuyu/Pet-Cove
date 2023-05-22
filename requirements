@@ -1,3 +1,6 @@
 java SE 19.0.1
 maven 3.9.0
 mysql 8.0.32
+node 16.17.0
+npm 8.15.0
+@vue/cli 5.0.8
