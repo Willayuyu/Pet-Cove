@@ -17,11 +17,12 @@ public interface UserService extends IService<User> {
      **/
     public User getUserByName(String username);
 
+
     /**
-     *check password
-     * @Params
-     * @Return
-     **/
+     * @param name
+     * @param password
+     * @return true if password passes, else false
+     */
     public boolean checkPassword(String name, String password);
 
     /**
@@ -31,9 +32,11 @@ public interface UserService extends IService<User> {
 
 
     /**
-     *login
-     **/
-
+     * @param name
+     * @param password
+     * @param isSeller true if login as a seller
+     * @return user id if successful or a state
+     */
     int login(String name, String password, boolean isSeller);
 
     /**
@@ -41,7 +44,12 @@ public interface UserService extends IService<User> {
      **/
     public void logout(long Id);
 
-    //update
+
+    /**
+     * update profile for user
+     * @param user
+     * @return a state
+     */
     public int updateProfile(User user);
 
 

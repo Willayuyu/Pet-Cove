@@ -13,7 +13,7 @@ import java.util.List;
 public interface OrderItemService extends IService<OrderItem> {
 
     /**
-     *
+     * create an order item for a specific product in one order
      * @param info
      * @param orderId
      */
